@@ -3,692 +3,2371 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Advanced Binary Pixel Editor</title>
+
+    <!-- ═══ PRIMARY SEO ═══ -->
+    <title>OLED Pixel Editor — Free SSD1306, Arduino &amp; ESP32 Bitmap Designer</title>
+<link rel="canonical" href="https://oled-pixel-editor.netlify.app/">
+    <meta name="description" content="Free browser-based OLED pixel editor for SSD1306, Arduino &amp; ESP32 displays. Draw pixel art, export PNG, CSV, C Array &amp; ready-to-flash Arduino sketches. No install needed.">
+    <meta name="keywords" content="OLED pixel editor, SSD1306 editor, Arduino OLED tool, ESP32 display editor, pixel art bitmap, embedded display designer, monochrome display tool, microcontroller graphics">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="BlinkNBuild">
+    <meta name="theme-color" content="#0c0c10">
+
+    <!-- ═══ OPEN GRAPH ═══ -->
+    <meta property="og:title" content="OLED Pixel Editor — SSD1306 &amp; Arduino Bitmap Designer">
+    <meta property="og:description" content="Free browser-based pixel art editor for OLED displays. Export bitmaps as PNG, CSV, C Array or ready-to-flash Arduino sketches. Works with SSD1306, ESP32 &amp; Arduino.">
+    <meta property="og:type" content="website">
+<meta property="og:url" content="https://oled-pixel-editor.netlify.app/">
+    <meta property="og:image" id="og-image-meta" content="https://oled-pixel-editor.netlify.app/og-image.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    
+    
+    
+    
+    <meta property="og:site_name" content="OLED Pixel Editor">
+    <meta property="og:locale" content="en_US">
+
+    <!-- ═══ TWITTER CARD ═══ -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="OLED Pixel Editor — SSD1306 &amp; Arduino Bitmap Designer">
+    <meta name="twitter:description" content="Free browser-based pixel art editor for OLED displays. Export as PNG, CSV, C Array or Arduino sketch. No install needed.">
+    <meta name="twitter:image" id="tw-image-meta" content="https://oled-pixel-editor.netlify.app/og-image.png">
+    
+    <meta name="twitter:image:alt" content="OLED Pixel Editor — browser-based bitmap design tool">
+
+    <!-- ═══ JSON-LD STRUCTURED DATA ═══ -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "OLED Pixel Editor",
+      "author": {"@type":"Person","name":"BlinkNBuild","url":"https://www.youtube.com/@BlinkNBuild"},
+      "alternateName": ["SSD1306 Editor", "Arduino OLED Tool", "ESP32 Display Editor"],
+      "description": "Free browser-based pixel art editor for OLED displays. Draw, edit, and export bitmaps for SSD1306, Arduino, and ESP32 projects. Supports PNG, CSV, C Array, and Arduino sketch export.",
+    "url": "https://oled-pixel-editor.netlify.app/",
+      "applicationCategory": "DesignApplication",
+      "operatingSystem": "Any",
+      "browserRequirements": "Requires a modern web browser with HTML5 Canvas support",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "featureList": [
+        "Pencil, eraser, flood fill, and selection tools",
+        "Full shape library: rectangle, ellipse, circle, triangle, diamond, star, arrow",
+        "Export to PNG, CSV, C Array header, and Arduino .ino sketch",
+        "Import CSV pixel data",
+        "Undo/redo with 80-step history",
+        "Custom canvas resolution up to 1024×1024",
+        "Pinch-to-zoom touch support for mobile",
+        "Bitmap transforms: flip, rotate, invert"
+      ]
+    }
+    </script>
+
+    <!-- ═══ FAVICONS — inline, no external files ═══ -->
+    <!-- Primary: SVG (Chrome, Firefox, Edge) -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='5' fill='%230c0c10'/%3E%3Cg fill='%2300e5a0'%3E%3Crect x='4' y='4' width='3' height='3'/%3E%3Crect x='9' y='4' width='3' height='3'/%3E%3Crect x='18' y='4' width='3' height='3'/%3E%3Crect x='25' y='4' width='3' height='3'/%3E%3Crect x='4' y='9' width='3' height='3'/%3E%3Crect x='14' y='9' width='3' height='3'/%3E%3Crect x='20' y='9' width='3' height='3'/%3E%3Crect x='25' y='9' width='3' height='3'/%3E%3Crect x='4' y='14' width='3' height='3'/%3E%3Crect x='9' y='14' width='3' height='3'/%3E%3Crect x='14' y='14' width='3' height='3'/%3E%3Crect x='20' y='14' width='3' height='3'/%3E%3Crect x='4' y='20' width='3' height='3'/%3E%3Crect x='14' y='20' width='3' height='3'/%3E%3Crect x='20' y='20' width='3' height='3'/%3E%3Crect x='25' y='20' width='3' height='3'/%3E%3Crect x='9' y='25' width='3' height='3'/%3E%3Crect x='14' y='25' width='3' height='3'/%3E%3Crect x='20' y='25' width='3' height='3'/%3E%3Crect x='25' y='25' width='3' height='3'/%3E%3C/g%3E%3C/svg%3E">
+    <!-- Fallback PNG + Apple touch icon: generated dynamically below -->
+    <link rel="alternate icon" type="image/png" id="favicon-png" href="">
+    <link rel="apple-touch-icon" id="apple-touch-icon" href="">
+
+    <!-- ═══ FONTS — non-blocking ═══ -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=DM+Sans:wght@400;500;600&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=DM+Sans:wght@400;500;600&display=swap"></noscript>
+
     <style>
         :root {
-            --bg-color: #0a0a0c;
-            --workspace-bg: #121214;
-            --ui-bg: rgba(20, 20, 25, 0.85);
-            --text-color: #f0f0f0;
-            --text-dim: #94a3b8;
-            --accent-color: #10b981;
-            --selection-color: #3b82f6;
-            --border-color: rgba(255, 255, 255, 0.1);
-            --pixel-on: #ffffff;
-            --pixel-off: #1e1e22;
-            --grid-color: rgba(255, 255, 255, 0.03);
+            --bg:#0c0c10; --surface:#13131a; --surface2:#1c1c26;
+            --border:rgba(255,255,255,0.08); --border-bright:rgba(255,255,255,0.16);
+            --text:#e8e8f0; --text-dim:#55556a; --text-mid:#9090b0;
+            --accent:#00e5a0; --accent-dim:rgba(0,229,160,0.12);
+            --danger:#ff4466; --selection:#4488ff; --selection-dim:rgba(68,136,255,0.18);
+        }
+        *,*::before,*::after{box-sizing:border-box;}
+        body,html{margin:0;padding:0;width:100%;height:100%;overflow:hidden;background:var(--bg);
+            font-family:'DM Sans',system-ui,sans-serif;color:var(--text);display:flex;flex-direction:column;user-select:none;}
+
+        /* ════ TOP BAR ════ */
+        #topbar{height:44px;min-height:44px;background:var(--surface);border-bottom:1px solid var(--border);
+            display:flex;align-items:center;padding:0 10px;gap:4px;flex-shrink:0;z-index:20;overflow-x:auto;
+            scrollbar-width:thin;scrollbar-color:var(--border-bright) transparent;}
+        #topbar::-webkit-scrollbar{height:4px;}
+        #topbar::-webkit-scrollbar-track{background:transparent;}
+        #topbar::-webkit-scrollbar-thumb{background:var(--border-bright);border-radius:2px;}
+        .app-title{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;color:var(--accent);
+            letter-spacing:.06em;white-space:nowrap;padding-right:8px;}
+        .tb-sep{width:1px;height:22px;background:var(--border);margin:0 4px;flex-shrink:0;}
+        .tb-btn{background:transparent;border:1px solid transparent;color:var(--text-mid);padding:4px 9px;
+            border-radius:5px;cursor:pointer;font-size:12px;font-family:'DM Sans',system-ui,sans-serif;font-weight:500;
+            transition:background .12s,color .12s,border-color .12s;outline:none;display:flex;align-items:center;
+            gap:4px;white-space:nowrap;flex-shrink:0;min-height:28px;}
+        .tb-btn:hover{background:var(--surface2);color:var(--text);border-color:var(--border);}
+        .tb-btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+        .tb-btn.active{background:var(--accent-dim);color:var(--accent);border-color:rgba(0,229,160,.28);}
+        .tb-btn.danger{color:var(--danger);}
+        .tb-btn.danger:hover{background:rgba(255,68,102,.1);border-color:rgba(255,68,102,.25);}
+        .tb-label{font-size:11px;font-family:'JetBrains Mono',monospace;color:var(--text-dim);
+            white-space:nowrap;padding:0 4px;flex-shrink:0;}
+
+        /* Selection toolbar — always occupies space so layout never shifts */
+        #sel-toolbar{height:36px;min-height:36px;background:#0f1520;border-bottom:1px solid rgba(68,136,255,.25);
+            display:flex;align-items:center;padding:0 10px;gap:4px;flex-shrink:0;z-index:19;
+            visibility:hidden;opacity:0;transition:opacity .15s;}
+        #sel-toolbar.visible{visibility:visible;opacity:1;}
+        .sel-label{font-size:11px;font-family:'JetBrains Mono',monospace;color:var(--selection);padding:0 6px;}
+
+        /* Brush size */
+        .brush-row{display:flex;align-items:center;gap:4px;flex-shrink:0;}
+        .bsz-btn{width:28px;height:28px;border-radius:5px;border:1px solid var(--border);background:transparent;
+            cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--text-mid);
+            transition:background .12s,border-color .12s,color .12s;flex-shrink:0;}
+        .bsz-btn:hover{background:var(--surface2);border-color:var(--border-bright);color:var(--text);}
+        .bsz-btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+        .bsz-btn.active{background:var(--accent-dim);border-color:rgba(0,229,160,.3);color:var(--accent);}
+        .bsz-btn span{background:currentColor;border-radius:50%;display:block;}
+        .brush-custom{width:42px;height:28px;border-radius:5px;border:1px solid var(--border);
+            background:var(--surface2);color:var(--text);font-family:'JetBrains Mono',monospace;
+            font-size:11px;text-align:center;outline:none;padding:0 4px;appearance:textfield;-moz-appearance:textfield;}
+        .brush-custom:focus{border-color:rgba(0,229,160,.4);}
+        .brush-custom:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+        .brush-custom::-webkit-inner-spin-button,
+        .brush-custom::-webkit-outer-spin-button{-webkit-appearance:none;margin:0;}
+
+        /* Resolution selector */
+        .res-select{height:28px;border-radius:5px;border:1px solid var(--border);
+            background:var(--surface2);color:var(--text);font-family:'JetBrains Mono',monospace;
+            font-size:11px;padding:0 5px;outline:none;cursor:pointer;flex-shrink:0;
+            -webkit-appearance:none;-moz-appearance:none;appearance:none;
+            background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%2355556a'/%3E%3C/svg%3E");
+            background-repeat:no-repeat;background-position:right 6px center;padding-right:20px;}
+        .res-select:focus{border-color:rgba(0,229,160,.4);outline:none;}
+        .res-select:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+        .res-select option{background:var(--surface2);color:var(--text);}
+        .res-custom-row{display:none;align-items:center;gap:3px;flex-shrink:0;}
+        .res-custom-row.visible{display:flex;}
+        .res-dim-input{width:44px;height:28px;border-radius:5px;border:1px solid var(--border);
+            background:var(--surface2);color:var(--text);font-family:'JetBrains Mono',monospace;
+            font-size:11px;text-align:center;outline:none;padding:0 4px;appearance:textfield;-moz-appearance:textfield;}
+        .res-dim-input:focus{border-color:rgba(0,229,160,.4);}
+        .res-dim-input:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+        .res-dim-input::-webkit-inner-spin-button,
+        .res-dim-input::-webkit-outer-spin-button{-webkit-appearance:none;margin:0;}
+        .res-apply-btn{background:var(--accent-dim);color:var(--accent);border-color:rgba(0,229,160,.28);
+            padding:3px 8px;height:28px;font-size:11px;}
+        .res-apply-btn:hover{background:rgba(0,229,160,.22);border-color:rgba(0,229,160,.5);}
+
+        /* MAIN */
+        #main{flex:1;display:flex;overflow:hidden;position:relative;}
+
+        /* SIDEBAR */
+        #sidebar{width:50px;min-width:50px;background:var(--surface);border-right:1px solid var(--border);
+            display:flex;flex-direction:column;align-items:center;padding:6px 0;gap:2px;z-index:15;overflow-y:auto;
+            scrollbar-width:none;}
+        #sidebar::-webkit-scrollbar{display:none;}
+        .sbl{font-size:8px;font-family:'JetBrains Mono',monospace;color:var(--text-dim);letter-spacing:.05em;
+            text-transform:uppercase;margin:5px 0 1px;text-align:center;}
+        .sbd{width:30px;height:1px;background:var(--border);margin:3px 0;}
+        .tool-btn{width:34px;height:34px;border-radius:7px;border:1px solid transparent;background:transparent;
+            cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--text-dim);
+            transition:background .12s,color .12s,border-color .12s;position:relative;flex-shrink:0;}
+        .tool-btn:hover{background:var(--surface2);color:var(--text);border-color:var(--border);}
+        .tool-btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+        .tool-btn.active{background:var(--accent-dim);color:var(--accent);border-color:rgba(0,229,160,.28);
+            box-shadow:0 0 8px rgba(0,229,160,.08);}
+        .tool-btn::after{content:attr(data-tip);position:absolute;left:calc(100% + 8px);top:50%;
+            transform:translateY(-50%);background:var(--surface2);border:1px solid var(--border-bright);
+            color:var(--text);font-size:11px;font-family:'DM Sans',system-ui,sans-serif;font-weight:500;
+            padding:3px 8px;border-radius:5px;white-space:nowrap;pointer-events:none;
+            opacity:0;transition:opacity .12s;z-index:100;}
+        .tool-btn:hover::after{opacity:1;}
+
+        /* CANVAS */
+        #editor-container{flex:1;position:relative;overflow:hidden;touch-action:none;background:var(--bg);cursor:crosshair;}
+        #canvas-element{image-rendering:pixelated;display:block;}
+
+        /* STATUS BAR */
+        #statusbar{height:26px;min-height:26px;background:var(--surface);border-top:1px solid var(--border);
+            display:flex;align-items:center;padding:0 10px;gap:14px;flex-shrink:0;
+            font-size:11px;font-family:'JetBrains Mono',monospace;color:var(--text-dim);z-index:20;overflow:hidden;}
+        #statusbar b{color:var(--text);font-weight:500;}
+        .s-accent{color:var(--accent);font-weight:600;}
+
+        #toast{position:fixed;bottom:36px;left:50%;transform:translateX(-50%) translateY(14px);
+            background:var(--surface2);border:1px solid var(--border-bright);color:var(--text);
+            font-size:11px;font-family:'JetBrains Mono',monospace;padding:5px 14px;border-radius:20px;
+            opacity:0;transition:opacity .25s,transform .25s;pointer-events:none;z-index:200;white-space:nowrap;}
+        #toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+        #import-input{display:none;}
+
+        /* ════ SEO CONTENT — off-screen, fully indexable by Google ════ */
+        .seo-section{position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden;
+            z-index:-1;pointer-events:none;}
+
+        /* ════ MOBILE TOUCH IMPROVEMENTS ════ */
+        @media (max-width: 768px) {
+            #topbar{padding:0 6px;gap:2px;}
+            .tb-btn{padding:4px 7px;font-size:11px;min-height:32px;}
+            .tool-btn{width:38px;height:38px;}
+            #sidebar{width:46px;min-width:46px;}
+            .bsz-btn{width:32px;height:32px;}
+        }
+        @media (pointer:coarse){
+            .tb-btn{min-height:36px;}
+            .tool-btn{width:40px;height:40px;}
+            .bsz-btn{width:36px;height:36px;}
         }
 
-        body, html {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            background-color: var(--bg-color);
-            background-image: radial-gradient(circle at 50% 50%, #1a1a20 0%, #0a0a0c 100%);
-            font-family: 'Inter', -apple-system, system-ui, sans-serif;
-            color: var(--text-color);
-            display: flex;
-            flex-direction: column;
-            user-select: none;
-        }
+        /* ════ HELP BUTTON ════ */
+        .help-btn { color: var(--accent); border-color: rgba(0,229,160,.2); }
+        .help-btn:hover { background: var(--accent-dim); color: var(--accent); border-color: rgba(0,229,160,.4); }
 
-        #editor-container {
-            flex: 1;
-            position: relative;
-            cursor: crosshair;
-            overflow: hidden;
-            touch-action: none;
+        /* ════ HELP MODAL OVERLAY ════ */
+        #help-overlay {
+            position: fixed; inset: 0; z-index: 1000;
+            background: rgba(0,0,0,.7);
+            display: flex; align-items: center; justify-content: center;
+            opacity: 0; visibility: hidden;
+            transition: opacity .2s, visibility .2s;
         }
+        #help-overlay.open { opacity: 1; visibility: visible; }
 
-        #canvas-element {
-            image-rendering: pixelated;
-            display: block;
-        }
-
-        .ui-overlay {
-            position: absolute;
-            pointer-events: none;
-            width: 100%;
-            padding: 20px;
-            box-sizing: border-box;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            z-index: 10;
-        }
-
-        .ui-bottom {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            padding: 24px;
-            pointer-events: none;
-            display: flex;
-            justify-content: center;
-            z-index: 10;
-        }
-
-        .glass-panel {
-            background: var(--ui-bg);
-            backdrop-filter: blur(12px);
-            padding: 6px;
+        #help-modal {
+            background: var(--surface);
+            border: 1px solid var(--border-bright);
             border-radius: 12px;
-            border: 1px solid var(--border-color);
-            pointer-events: auto;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.4), inset 0 0 0 1px rgba(255,255,255,0.05);
+            width: min(860px, 96vw);
+            height: min(620px, 92vh);
+            display: flex; flex-direction: column;
+            overflow: hidden;
+            box-shadow: 0 24px 80px rgba(0,0,0,.7);
+            transform: translateY(12px) scale(.97);
+            transition: transform .2s;
+        }
+        #help-overlay.open #help-modal { transform: translateY(0) scale(1); }
+
+        /* Modal header */
+        .hm-header {
+            display: flex; align-items: center; gap: 10px;
+            padding: 16px 20px 0;
+            flex-shrink: 0;
+        }
+        .hm-title {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px; font-weight: 700;
+            color: var(--accent); letter-spacing: .05em; flex: 1;
+        }
+        .hm-close {
+            width: 28px; height: 28px; border-radius: 6px;
+            border: 1px solid var(--border); background: transparent;
+            color: var(--text-mid); cursor: pointer; font-size: 16px;
+            display: flex; align-items: center; justify-content: center;
+            transition: all .12s; flex-shrink: 0;
+        }
+        .hm-close:hover { background: rgba(255,68,102,.15); color: var(--danger); border-color: rgba(255,68,102,.3); }
+
+        /* Tabs */
+        .hm-tabs {
+            display: flex; gap: 2px; padding: 12px 20px 0;
+            border-bottom: 1px solid var(--border); flex-shrink: 0;
+            overflow-x: auto; scrollbar-width: none;
+        }
+        .hm-tabs::-webkit-scrollbar { display: none; }
+        .hm-tab {
+            padding: 6px 14px 8px; border-radius: 6px 6px 0 0;
+            border: none; background: transparent;
+            color: var(--text-dim); cursor: pointer;
+            font-size: 11px; font-family: 'DM Sans', sans-serif; font-weight: 500;
+            white-space: nowrap; transition: all .12s;
+            border-bottom: 2px solid transparent; margin-bottom: -1px;
+        }
+        .hm-tab:hover { color: var(--text); background: var(--surface2); }
+        .hm-tab.active { color: var(--accent); border-bottom-color: var(--accent); background: var(--accent-dim); }
+
+        /* Content */
+        .hm-body {
+            flex: 1; overflow-y: auto; padding: 20px 24px;
+            scrollbar-width: thin; scrollbar-color: var(--border-bright) transparent;
+        }
+        .hm-body::-webkit-scrollbar { width: 6px; }
+        .hm-body::-webkit-scrollbar-track { background: transparent; }
+        .hm-body::-webkit-scrollbar-thumb { background: var(--border-bright); border-radius: 3px; }
+
+        .hm-panel { display: none; }
+        .hm-panel.active { display: block; }
+
+        /* Typography inside help */
+        .hm-body h2 {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px; font-weight: 700; letter-spacing: .08em;
+            text-transform: uppercase; color: var(--accent);
+            margin: 0 0 12px; padding-bottom: 6px;
+            border-bottom: 1px solid var(--border);
+        }
+        .hm-body h3 {
+            font-size: 12px; font-weight: 600; color: var(--text);
+            margin: 16px 0 6px;
+        }
+        .hm-body p {
+            font-size: 12px; line-height: 1.7; color: var(--text-mid);
+            margin: 0 0 10px;
+        }
+        .hm-body p strong { color: var(--text); font-weight: 600; }
+        .hm-body code {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10.5px; background: var(--surface2);
+            border: 1px solid var(--border); border-radius: 4px;
+            padding: 1px 5px; color: var(--accent);
         }
 
-        .toolbar-group {
-            display: flex;
-            align-items: center;
-            gap: 4px;
-            padding: 0 4px;
+        /* Tool grid */
+        .tool-grid {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+            gap: 8px; margin-bottom: 14px;
+        }
+        .tool-card {
+            background: var(--surface2); border: 1px solid var(--border);
+            border-radius: 8px; padding: 10px 12px;
+        }
+        .tool-card-head {
+            display: flex; align-items: center; gap: 8px; margin-bottom: 4px;
+        }
+        .tool-card-icon {
+            width: 26px; height: 26px; border-radius: 6px;
+            background: var(--accent-dim); border: 1px solid rgba(0,229,160,.2);
+            display: flex; align-items: center; justify-content: center;
+            color: var(--accent); flex-shrink: 0;
+        }
+        .tool-card-name {
+            font-size: 11px; font-weight: 600; color: var(--text);
+            font-family: 'JetBrains Mono', monospace;
+        }
+        .tool-card-key {
+            margin-left: auto; font-family: 'JetBrains Mono', monospace;
+            font-size: 9px; background: var(--surface); border: 1px solid var(--border-bright);
+            border-radius: 3px; padding: 1px 5px; color: var(--text-dim);
+        }
+        .tool-card p { font-size: 11px; color: var(--text-dim); margin: 0; line-height: 1.5; }
+
+        /* Keyboard shortcut table */
+        .kb-table { width: 100%; border-collapse: collapse; margin-bottom: 14px; }
+        .kb-table th {
+            font-family: 'JetBrains Mono', monospace; font-size: 10px;
+            font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
+            color: var(--text-dim); text-align: left;
+            padding: 6px 10px; border-bottom: 1px solid var(--border);
+        }
+        .kb-table td {
+            font-size: 11px; color: var(--text-mid);
+            padding: 6px 10px; border-bottom: 1px solid var(--border);
+            vertical-align: top;
+        }
+        .kb-table tr:last-child td { border-bottom: none; }
+        .kb-table td:first-child { width: 44%; }
+        .kb-table kbd {
+            font-family: 'JetBrains Mono', monospace; font-size: 10px;
+            background: var(--surface2); border: 1px solid var(--border-bright);
+            border-radius: 3px; padding: 1px 6px; color: var(--text);
+            display: inline-block; margin: 1px 2px;
         }
 
-        .stats {
-            font-variant-numeric: tabular-nums;
-            font-size: 12px;
-            font-weight: 500;
-            color: var(--text-dim);
-            padding: 0 10px;
+        /* Steps list */
+        .hm-steps { list-style: none; padding: 0; margin: 0 0 14px; counter-reset: step; }
+        .hm-steps li {
+            counter-increment: step; display: flex; gap: 10px;
+            font-size: 12px; color: var(--text-mid); margin-bottom: 8px;
+            line-height: 1.6;
         }
-
-        .stats b { color: var(--text-color); }
-
-        button {
-            background: transparent;
-            border: 1px solid transparent;
-            color: var(--text-dim);
-            padding: 8px 14px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 13px;
-            font-weight: 500;
-            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-            outline: none;
-            display: flex;
-            align-items: center;
-            gap: 6px;
+        .hm-steps li::before {
+            content: counter(step);
+            min-width: 22px; height: 22px; border-radius: 50%;
+            background: var(--accent-dim); border: 1px solid rgba(0,229,160,.3);
+            color: var(--accent); font-family: 'JetBrains Mono', monospace;
+            font-size: 10px; font-weight: 700; display: flex;
+            align-items: center; justify-content: center; flex-shrink: 0;
+            margin-top: 1px;
         }
+        .hm-steps li strong { color: var(--text); }
 
-        button:hover {
-            background: rgba(255, 255, 255, 0.05);
-            color: var(--text-color);
+        /* Export cards */
+        .export-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px; }
+        .export-card {
+            background: var(--surface2); border: 1px solid var(--border);
+            border-radius: 8px; padding: 12px 14px;
         }
-
-        button.active {
-            background: rgba(16, 185, 129, 0.15);
-            color: var(--accent-color);
-            border-color: rgba(16, 185, 129, 0.3);
+        .export-card-title {
+            font-family: 'JetBrains Mono', monospace; font-size: 12px;
+            font-weight: 700; color: var(--text); margin-bottom: 5px;
         }
-
-        button.primary {
-            background: var(--accent-color);
-            color: #000;
+        .export-card-tag {
+            display: inline-block; font-size: 9px; font-family: 'JetBrains Mono', monospace;
+            background: rgba(0,229,160,.12); color: var(--accent);
+            border: 1px solid rgba(0,229,160,.2); border-radius: 10px;
+            padding: 1px 7px; margin-bottom: 6px;
         }
+        .export-card p { font-size: 11px; color: var(--text-dim); margin: 0; line-height: 1.55; }
 
-        button.primary:hover {
-            background: #34d399;
+        /* Tip callout */
+        .hm-tip {
+            background: rgba(0,229,160,.07); border: 1px solid rgba(0,229,160,.2);
+            border-left: 3px solid var(--accent); border-radius: 6px;
+            padding: 10px 14px; margin-bottom: 12px;
+            font-size: 11px; color: var(--text-mid); line-height: 1.6;
         }
-
-        .divider {
-            width: 1px;
-            height: 24px;
-            background: var(--border-color);
-            margin: 0 4px;
+        .hm-tip strong { color: var(--accent); }
+        .hm-warn {
+            background: rgba(255,68,102,.07); border: 1px solid rgba(255,68,102,.2);
+            border-left: 3px solid var(--danger); border-radius: 6px;
+            padding: 10px 14px; margin-bottom: 12px;
+            font-size: 11px; color: var(--text-mid); line-height: 1.6;
         }
+        .hm-warn strong { color: var(--danger); }
 
-        .hint-bar {
-            position: absolute;
-            top: 80px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 11px;
-            font-weight: 500;
-            color: var(--text-dim);
-            text-align: center;
-            pointer-events: none;
-            background: rgba(0,0,0,0.3);
-            padding: 4px 12px;
-            border-radius: 20px;
-            letter-spacing: 0.02em;
-        }
+        /* Section divider */
+        .hm-divider { height: 1px; background: var(--border); margin: 18px 0; }
 
-        #import-input { display: none; }
-
-        /* Animation for selection */
-        @keyframes marching-ants {
-            0% { line-dash-offset: 0; }
-            100% { line-dash-offset: 10; }
+        @media (max-width: 600px) {
+            .export-grid { grid-template-columns: 1fr; }
+            .tool-grid   { grid-template-columns: 1fr; }
+            .hm-body     { padding: 14px 16px; }
         }
     </style>
 </head>
 <body>
 
-    <div id="editor-container">
-        <div class="ui-overlay">
-            <div style="display: flex; justify-content: space-between; width: 100%; pointer-events: none;">
-                <div class="glass-panel">
-                    <div class="toolbar-group">
-                        <button id="btn-pencil" class="active" onclick="setTool('pencil')" title="Pencil (P)">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/><path d="m15 5 4 4"/></svg>
-                            Pencil
-                        </button>
-                        <button id="btn-select" onclick="setTool('select')" title="Selection (S)">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2" stroke-dasharray="4 4"/></svg>
-                            Select
-                        </button>
-                    </div>
-                    <div class="divider"></div>
-                    <div class="toolbar-group">
-                        <button onclick="undo()" title="Undo (Ctrl+Z)">Undo</button>
-                        <button onclick="redo()" title="Redo (Ctrl+Y)">Redo</button>
-                    </div>
-                    <span class="stats" id="history-label">Steps: 0</span>
-                </div>
-                
-                <div class="glass-panel">
-                    <span class="stats">Zoom: <b id="zoom-value">100</b>%</span>
-                    <div class="divider"></div>
-                    <button onclick="fitToScreen()">Center View</button>
-                </div>
-            </div>
+<!-- ════ TOP BAR ════ -->
+<div id="topbar" role="toolbar" aria-label="Main toolbar">
+    <span class="app-title" aria-label="OLED Pixel Editor">OLED STUDIO</span>
+    <div class="tb-sep" role="separator" aria-hidden="true"></div>
+    <button type="button" class="tb-btn" onclick="undo()" title="Ctrl+Z" aria-label="Undo last action (Ctrl+Z)">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M3 7v6h6"/><path d="M3 13C4.5 7.5 9.5 4 15 4a9 9 0 0 1 6 2.5"/></svg>Undo
+    </button>
+    <button type="button" class="tb-btn" onclick="redo()" title="Ctrl+Y" aria-label="Redo last action (Ctrl+Y)">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M21 7v6h-6"/><path d="M21 13C19.5 7.5 14.5 4 9 4a9 9 0 0 0-6 2.5"/></svg>Redo
+    </button>
+    <span class="tb-label" id="history-label" aria-live="polite" aria-atomic="true">0 steps</span>
+    <div class="tb-sep" role="separator" aria-hidden="true"></div>
 
-            <div class="glass-panel" style="align-self: flex-start;">
-                <button onclick="exportPNG()">Export PNG</button>
-                <button onclick="exportCSV()">Export CSV</button>
-                <button onclick="triggerImport()">Import CSV</button>
-                <input type="file" id="import-input" accept=".csv" onchange="handleImport(event)">
-            </div>
-        </div>
+    <span class="tb-label" id="brush-label">Brush</span>
+    <div class="brush-row" role="group" aria-labelledby="brush-label">
+        <button type="button" class="bsz-btn active" id="bsz-1" onclick="setBrush(1)" aria-label="1px brush size" title="1px brush"><span style="width:3px;height:3px;" aria-hidden="true"></span></button>
+        <button type="button" class="bsz-btn" id="bsz-2" onclick="setBrush(2)" aria-label="2px brush size" title="2px brush"><span style="width:6px;height:6px;" aria-hidden="true"></span></button>
+        <button type="button" class="bsz-btn" id="bsz-3" onclick="setBrush(3)" aria-label="3px brush size" title="3px brush"><span style="width:9px;height:9px;" aria-hidden="true"></span></button>
+        <input class="brush-custom" type="number" id="brush-custom-input" value="1" min="1" max="64"
+               aria-label="Custom brush size in pixels"
+               title="Custom brush size (px)"
+               onchange="setBrushCustom(this.value)" oninput="setBrushCustom(this.value)"
+               onkeydown="event.stopPropagation()" onmousedown="event.stopPropagation()">
+    </div>
+    <div class="tb-sep" role="separator" aria-hidden="true"></div>
 
-        <div class="hint-bar">
-            <b>S</b> Select • <b>P</b> Pencil • <b>Ctrl+Z/Y</b> Undo/Redo • <b>Alt+Drag</b> Duplicate • <b>Del</b> Clear
-        </div>
+    <span class="tb-label">Transform</span>
+    <button type="button" class="tb-btn" onclick="doInvert()"  title="Invert pixels (selection or all)" aria-label="Invert pixels">Invert</button>
+    <button type="button" class="tb-btn" onclick="doFlipH()"   title="Flip horizontal (selection or all)" aria-label="Flip horizontal">↔ H</button>
+    <button type="button" class="tb-btn" onclick="doFlipV()"   title="Flip vertical (selection or all)" aria-label="Flip vertical">↕ V</button>
+    <button type="button" class="tb-btn" onclick="doRotate90()" title="Rotate 90° clockwise (selection or all)" aria-label="Rotate 90 degrees clockwise">↻ 90°</button>
+    <div class="tb-sep" role="separator" aria-hidden="true"></div>
 
+    <span class="tb-label">Export</span>
+    <button type="button" class="tb-btn" onclick="exportPNG()"           aria-label="Export canvas as PNG image">PNG</button>
+    <button type="button" class="tb-btn" onclick="exportCSV()"           aria-label="Export canvas as CSV data">CSV</button>
+    <button type="button" class="tb-btn" onclick="exportCArray()"        aria-label="Export canvas as C Array header file">C Array</button>
+    <button type="button" class="tb-btn" onclick="exportArduinoSketch()" title="Export full Arduino sketch (.ino) for SSD1306" aria-label="Export ready-to-flash Arduino sketch">Arduino Sketch</button>
+    <button type="button" class="tb-btn" onclick="triggerImport()"       aria-label="Import CSV pixel data file">Import</button>
+    <input type="file" id="import-input" accept=".csv" aria-hidden="true" onchange="handleImport(event)">
+    <div class="tb-sep" role="separator" aria-hidden="true"></div>
+
+    <span class="tb-label">Canvas</span>
+    <select id="res-select" class="res-select"
+            onchange="onResSelect()"
+            onkeydown="event.stopPropagation()"
+            onmousedown="event.stopPropagation()"
+            aria-label="Canvas resolution preset">
+        <option value="128x64"  selected>128×64</option>
+        <option value="128x32"         >128×32</option>
+        <option value="96x16"          >96×16</option>
+        <option value="72x40"          >72×40</option>
+        <option value="64x48"          >64×48</option>
+        <option value="64x32"          >64×32</option>
+        <option value="128x128"        >128×128</option>
+        <option value="96x64"          >96×64</option>
+        <option value="160x128"        >160×128</option>
+        <option value="256x64"         >256×64</option>
+        <option value="100x16"         >100×16</option>
+        <option value="100x32"         >100×32</option>
+        <option value="200x16"         >200×16</option>
+        <option value="50x16"          >50×16</option>
+        <option value="240x128"        >240×128</option>
+        <option value="240x64"         >240×64</option>
+        <option value="custom"         >Custom…</option>
+    </select>
+    <div id="res-custom-row" class="res-custom-row" role="group" aria-label="Custom canvas dimensions">
+        <input type="number" id="res-w" class="res-dim-input" value="128" min="1" max="1024"
+               aria-label="Canvas width in pixels"
+               onkeydown="if(event.key==='Enter')onResApply();event.stopPropagation();"
+               onmousedown="event.stopPropagation()">
+        <span class="tb-label" style="padding:0 1px;" aria-hidden="true">×</span>
+        <input type="number" id="res-h" class="res-dim-input" value="64" min="1" max="1024"
+               aria-label="Canvas height in pixels"
+               onkeydown="if(event.key==='Enter')onResApply();event.stopPropagation();"
+               onmousedown="event.stopPropagation()">
+        <button type="button" class="tb-btn res-apply-btn" onclick="onResApply()" aria-label="Apply custom canvas resolution">Apply</button>
+    </div>
+    <div class="tb-sep" role="separator" aria-hidden="true" style="margin-left:auto;"></div>
+    <span class="tb-label">Zoom:<b id="zoom-value"> 100</b>%</span>
+    <button type="button" class="tb-btn" onclick="fitToScreen()" aria-label="Fit canvas to screen">Fit</button>
+    <div class="tb-sep" role="separator" aria-hidden="true"></div>
+    <button type="button" class="tb-btn danger" onclick="clearCanvas()" aria-label="Clear entire canvas">Clear</button>
+    <div class="tb-sep" role="separator" aria-hidden="true"></div>
+    <button type="button" class="tb-btn help-btn" onclick="openHelp()" aria-label="Open help and user guide" title="Help &amp; User Guide (?)">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>Help
+    </button>
+</div>
+
+<!-- SELECTION CONTEXT TOOLBAR -->
+<div id="sel-toolbar" role="toolbar" aria-label="Selection options toolbar" aria-hidden="true">
+    <span class="sel-label" aria-hidden="true">◈ SELECTION</span>
+    <div class="tb-sep" role="separator" aria-hidden="true"></div>
+    <button type="button" class="tb-btn" onclick="copySelection()"  title="Copy selection (Ctrl+C)" aria-label="Copy selection (Ctrl+C)">Copy</button>
+    <button type="button" class="tb-btn" onclick="cutSelection()"   title="Cut selection (Ctrl+X)"  aria-label="Cut selection (Ctrl+X)">Cut</button>
+    <button type="button" class="tb-btn" onclick="pasteClipboard()" title="Paste (Ctrl+V)"          aria-label="Paste clipboard (Ctrl+V)">Paste</button>
+    <div class="tb-sep" role="separator" aria-hidden="true"></div>
+    <button type="button" class="tb-btn" onclick="doInvert()"   aria-label="Invert selection pixels">Invert Sel</button>
+    <button type="button" class="tb-btn" onclick="doFlipH()"    aria-label="Flip selection horizontal">↔ Flip H</button>
+    <button type="button" class="tb-btn" onclick="doFlipV()"    aria-label="Flip selection vertical">↕ Flip V</button>
+    <button type="button" class="tb-btn" onclick="doRotate90()" aria-label="Rotate selection 90 degrees">↻ Rotate 90°</button>
+    <div class="tb-sep" role="separator" aria-hidden="true"></div>
+    <button type="button" class="tb-btn" onclick="cropToSelection()" title="Erase all pixels outside selection" aria-label="Crop canvas to selection">Crop</button>
+    <button type="button" class="tb-btn danger" onclick="deleteSelection()" aria-label="Delete selected pixels">Delete</button>
+    <div class="tb-sep" role="separator" aria-hidden="true"></div>
+    <span class="tb-label" id="sel-info" aria-live="polite" aria-atomic="true"></span>
+</div>
+
+<!-- MAIN -->
+<main id="main">
+    <!-- SIDEBAR TOOLS -->
+    <nav id="sidebar" role="toolbar" aria-label="Drawing tools" aria-orientation="vertical">
+        <span class="sbl" aria-hidden="true">Draw</span>
+        <button type="button" class="tool-btn active" id="tool-pencil"       data-tip="Pencil (P)"            aria-label="Pencil tool (P)"        aria-pressed="true"  onclick="setTool('pencil')">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/><path d="m15 5 4 4"/></svg>
+        </button>
+        <button type="button" class="tool-btn" id="tool-eraser"             data-tip="Eraser (E)"             aria-label="Eraser tool (E)"        aria-pressed="false" onclick="setTool('eraser')">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="m7 21-4.3-4.3c-1-1-1-2.5 0-3.4l9.6-9.6c1-1 2.5-1 3.4 0l5.6 5.6c1 1 1 2.5 0 3.4L13 21"/><path d="M22 21H7"/><path d="m5 11 9 9"/></svg>
+        </button>
+        <button type="button" class="tool-btn" id="tool-fill"               data-tip="Fill Bucket (F)"        aria-label="Flood fill tool (F)"    aria-pressed="false" onclick="setTool('fill')">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="m19 11-8-8-8.5 8.5c-.94.94-.94 2.46 0 3.4l3.64 3.64c.94.94 2.46.94 3.4 0L19 11Z"/><path d="m5 2 5 5"/><path d="M2 13h15"/><path d="M22 20a2 2 0 1 1-4 0c0-1.6 1.7-2.4 2-4 .3 1.6 2 2.4 2 4Z"/></svg>
+        </button>
+
+        <div class="sbd" role="separator"></div>
+        <span class="sbl" aria-hidden="true">Shapes</span>
+        <button type="button" class="tool-btn" id="tool-line"               data-tip="Line (L)"               aria-label="Line tool (L)"               aria-pressed="false" onclick="setTool('line')">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><line x1="5" y1="19" x2="19" y2="5"/></svg>
+        </button>
+        <button type="button" class="tool-btn" id="tool-rect"               data-tip="Rectangle (R)"          aria-label="Rectangle tool (R)"          aria-pressed="false" onclick="setTool('rect')">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="1"/></svg>
+        </button>
+        <button type="button" class="tool-btn" id="tool-rect-fill"          data-tip="Filled Rect"            aria-label="Filled rectangle tool"       aria-pressed="false" onclick="setTool('rect-fill')">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" stroke="none" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="1"/></svg>
+        </button>
+        <button type="button" class="tool-btn" id="tool-ellipse"            data-tip="Ellipse (Shift=circle)" aria-label="Ellipse tool (hold Shift for circle)" aria-pressed="false" onclick="setTool('ellipse')">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><ellipse cx="12" cy="12" rx="10" ry="6"/></svg>
+        </button>
+        <button type="button" class="tool-btn" id="tool-ellipse-fill"       data-tip="Filled Ellipse"         aria-label="Filled ellipse tool"         aria-pressed="false" onclick="setTool('ellipse-fill')">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" stroke="none" aria-hidden="true"><ellipse cx="12" cy="12" rx="10" ry="6"/></svg>
+        </button>
+        <button type="button" class="tool-btn" id="tool-circle"             data-tip="Circle (C) — perfect"   aria-label="Perfect circle tool (C)"     aria-pressed="false" onclick="setTool('circle')">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><circle cx="12" cy="12" r="9"/></svg>
+        </button>
+        <button type="button" class="tool-btn" id="tool-circle-fill"        data-tip="Filled Circle"          aria-label="Filled circle tool"          aria-pressed="false" onclick="setTool('circle-fill')">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" stroke="none" aria-hidden="true"><circle cx="12" cy="12" r="9"/></svg>
+        </button>
+        <button type="button" class="tool-btn" id="tool-triangle"           data-tip="Triangle (T)"           aria-label="Triangle tool (T)"           aria-pressed="false" onclick="setTool('triangle')">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><polygon points="12,3 22,21 2,21"/></svg>
+        </button>
+        <button type="button" class="tool-btn" id="tool-triangle-fill"      data-tip="Filled Triangle"        aria-label="Filled triangle tool"        aria-pressed="false" onclick="setTool('triangle-fill')">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" stroke="none" aria-hidden="true"><polygon points="12,3 22,21 2,21"/></svg>
+        </button>
+        <button type="button" class="tool-btn" id="tool-diamond"            data-tip="Diamond (D)"            aria-label="Diamond shape tool (D)"      aria-pressed="false" onclick="setTool('diamond')">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><polygon points="12,2 22,12 12,22 2,12"/></svg>
+        </button>
+        <button type="button" class="tool-btn" id="tool-diamond-fill"       data-tip="Filled Diamond"         aria-label="Filled diamond tool"         aria-pressed="false" onclick="setTool('diamond-fill')">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" stroke="none" aria-hidden="true"><polygon points="12,2 22,12 12,22 2,12"/></svg>
+        </button>
+        <button type="button" class="tool-btn" id="tool-star"               data-tip="5-Point Star"           aria-label="5-point star tool"           aria-pressed="false" onclick="setTool('star')">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+        </button>
+        <button type="button" class="tool-btn" id="tool-arrow"              data-tip="Arrow"                  aria-label="Arrow tool"                  aria-pressed="false" onclick="setTool('arrow')">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12,5 19,12 12,19"/></svg>
+        </button>
+        <button type="button" class="tool-btn" id="tool-rounded-rect"       data-tip="Rounded Rect"           aria-label="Rounded rectangle tool"      aria-pressed="false" onclick="setTool('rounded-rect')">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="4"/></svg>
+        </button>
+        <button type="button" class="tool-btn" id="tool-cross"              data-tip="Cross/Plus"             aria-label="Cross plus tool"             aria-pressed="false" onclick="setTool('cross')">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><line x1="12" y1="3" x2="12" y2="21"/><line x1="3" y1="12" x2="21" y2="12"/></svg>
+        </button>
+
+        <div class="sbd" role="separator"></div>
+        <span class="sbl" aria-hidden="true">Select</span>
+        <button type="button" class="tool-btn" id="tool-select"             data-tip="Select (S)"             aria-label="Rectangular selection tool (S)" aria-pressed="false" onclick="setTool('select')">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" stroke-dasharray="4 3"/></svg>
+        </button>
+    </nav>
+
+    <!-- PIXEL CANVAS -->
+    <div id="editor-container" aria-label="OLED pixel canvas drawing area">
         <canvas id="canvas-element"></canvas>
+    </div>
+</main>
 
-        <div class="ui-bottom">
-            <div class="glass-panel" style="padding: 8px 16px;">
-                <button onclick="clearCanvas()" style="color: #ef4444;">Clear All</button>
-                <div class="divider"></div>
-                <span class="stats" id="selection-status">No selection active</span>
-            </div>
-        </div>
+<!-- STATUS BAR -->
+<div id="statusbar" role="status" aria-live="polite" aria-atomic="false">
+    <span id="s-tool" class="s-accent" aria-label="Current tool">PENCIL</span>
+    <span>Pos:<b id="s-pos"> --</b></span>
+    <span>Brush:<b id="s-brush"> 1px</b></span>
+    <span id="s-dims" aria-label="Canvas dimensions">128×64</span>
+    <span id="s-sel" aria-label="Selection info">No selection</span>
+    <span style="margin-left:auto;">On:<b id="s-px"> 0</b></span>
+    <span>Zoom:<b id="s-zoom"> 100</b>%</span>
+</div>
+
+<!-- TOAST NOTIFICATION -->
+<div id="toast" role="alert" aria-live="assertive" aria-atomic="true"></div>
+
+<!-- ════ SEO SEMANTIC CONTENT — visible to Google crawlers, off-screen in the UI ════ -->
+<section class="seo-section" aria-label="About OLED Pixel Editor">
+    <h1>OLED Pixel Editor — Free SSD1306, Arduino &amp; ESP32 Bitmap Design Tool</h1>
+
+    <section>
+        <h2>What Is OLED Pixel Editor?</h2>
+        <p>OLED Pixel Editor is a free, browser-based pixel art editor designed for embedded systems developers, Arduino hobbyists, and ESP32 makers. It lets you design monochrome bitmap graphics for common OLED displays — including SSD1306 128×64, SSD1306 128×32, SH1106, and many other display controller variants — directly in your browser without installing any software.</p>
+        <p>The tool runs entirely in the browser as a single HTML file, making it fully compatible with Netlify, GitHub Pages, and any static web host. No backend or internet connection is required after loading.</p>
+    </section>
+
+    <section>
+        <h2>Key Features</h2>
+        <p>The editor includes a full drawing toolkit: pencil with adjustable brush size, eraser, flood fill, line, rectangle (outline and filled), ellipse, circle, triangle, diamond, star, arrow, rounded rectangle, and cross tools. A rectangular selection tool supports move, copy, cut, paste, resize, and transform operations on any area of the canvas.</p>
+        <p>Export options include PNG image download, CSV pixel data, C Array header files for direct use in Arduino and ESP32 sketches, and fully ready-to-flash Arduino .ino sketch files pre-configured for the Adafruit SSD1306 library. You can also import previously exported CSV files to continue editing saved work.</p>
+        <p>Additional features include 80-step undo/redo history, 16+ preset canvas resolutions ranging from 50×16 to 256×64, custom resolution up to 1024×1024, pinch-to-zoom touch support for tablets and phones, bitmap transforms (flip horizontal, flip vertical, rotate 90°, invert), and a zoom range from 50% to 2000%.</p>
+    </section>
+
+    <section>
+        <h2>How to Use the OLED Pixel Editor</h2>
+        <p>Select a drawing tool from the left sidebar or use keyboard shortcuts (P for pencil, E for eraser, F for fill, L for line, R for rectangle, C for circle, T for triangle, D for diamond, S for select). Choose your target canvas resolution from the dropdown — 128×64 is the standard SSD1306 OLED resolution — or enter a custom size.</p>
+        <p>Draw pixels on the canvas using your mouse or finger. Use the brush size controls in the top toolbar to paint multiple pixels at once. When your artwork is complete, click the export button that matches your target format. For Arduino and ESP32 projects, the "Arduino Sketch" export generates a complete .ino file that draws your bitmap using <code>display.drawBitmap()</code> from the Adafruit SSD1306 library.</p>
+        <p>To load an existing design, export it as CSV and re-import it later using the Import button. The canvas auto-resizes to match the imported CSV dimensions.</p>
+    </section>
+
+    <section>
+        <h2>Supported Display Controllers &amp; Boards</h2>
+        <p>This OLED bitmap editor generates compatible output for SSD1306 (the most common 128×64 and 128×32 OLED driver), SH1106 (96×64 and 128×64), SSD1309, and other I2C or SPI monochrome OLED controllers. It works with Arduino Uno, Nano, Mega, ESP8266 (NodeMCU), ESP32, Raspberry Pi Pico, STM32, and any board that supports the Adafruit GFX and Adafruit SSD1306 libraries.</p>
+    </section>
+</section>
+
+
+<!-- ════ HELP MODAL ════ -->
+<div id="help-overlay" role="dialog" aria-modal="true" aria-labelledby="help-title" onclick="overlayClick(event)">
+  <div id="help-modal">
+
+    <!-- Header -->
+    <div class="hm-header">
+      <span class="hm-title" id="help-title">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" style="vertical-align:-2px;margin-right:5px" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        OLED PIXEL STUDIO — USER GUIDE
+      </span>
+      <button type="button" class="hm-close" onclick="closeHelp()" aria-label="Close help">✕</button>
     </div>
 
-    <script>
-        const COLS = 128;
-        const ROWS = 64;
-        
-        const canvas = document.getElementById('canvas-element');
-        const ctx = canvas.getContext('2d', { alpha: false });
-        const container = document.getElementById('editor-container');
-        const zoomDisplay = document.getElementById('zoom-value');
-        const historyLabel = document.getElementById('history-label');
-        const selectionStatus = document.getElementById('selection-status');
+    <!-- Tabs -->
+    <div class="hm-tabs" role="tablist">
+      <button type="button" class="hm-tab active" role="tab" aria-selected="true"  onclick="helpTab(this,'tab-start')">🚀 Getting Started</button>
+      <button type="button" class="hm-tab"        role="tab" aria-selected="false" onclick="helpTab(this,'tab-tools')">🖊 Drawing Tools</button>
+      <button type="button" class="hm-tab"        role="tab" aria-selected="false" onclick="helpTab(this,'tab-shapes')">◻ Shapes</button>
+      <button type="button" class="hm-tab"        role="tab" aria-selected="false" onclick="helpTab(this,'tab-select')">⬚ Selection</button>
+      <button type="button" class="hm-tab"        role="tab" aria-selected="false" onclick="helpTab(this,'tab-export')">📤 Export &amp; Import</button>
+      <button type="button" class="hm-tab"        role="tab" aria-selected="false" onclick="helpTab(this,'tab-keys')">⌨ Shortcuts</button>
+      <button type="button" class="hm-tab"        role="tab" aria-selected="false" onclick="helpTab(this,'tab-tips')">💡 Tips</button>
+    </div>
 
-        // Main State
-        let pixels = new Uint8Array(COLS * ROWS);
-        let scale = 1;
-        let offsetX = 0;
-        let offsetY = 0;
+    <!-- ── GETTING STARTED ── -->
+    <div class="hm-body">
 
-        // Tool State
-        let currentTool = 'pencil';
-        let isDrawing = false;
-        let isPanning = false;
-        let isSelecting = false;
-        let isMovingSelection = false;
-        let drawMode = 1;
-        
-        // Selection State
-        let selection = { x: 0, y: 0, w: 0, h: 0, active: false };
-        let selectionBuffer = null; 
-        let dragStart = { x: 0, y: 0 };
-        let marqueeStart = { x: 0, y: 0 };
+      <div id="tab-start" class="hm-panel active" role="tabpanel">
+        <h2>Getting Started</h2>
+        <div class="hm-tip"><strong>What is this?</strong> OLED Pixel Studio is a free, browser-based bitmap editor built for embedded systems makers. Design graphics for SSD1306, SH1106, and other monochrome OLED displays, then export directly to Arduino-ready C code.</div>
 
-        // History
-        let undoStack = [];
-        let redoStack = [];
-        const MAX_HISTORY = 50;
+        <h3>Quick-Start Workflow</h3>
+        <ol class="hm-steps">
+          <li><strong>Pick a canvas size.</strong> Use the <strong>Canvas</strong> dropdown in the toolbar to select your display resolution. The default 128×64 matches the most common SSD1306 OLED. For other displays pick from 16 presets or enter a custom size.</li>
+          <li><strong>Select a tool.</strong> Click any tool in the left sidebar or press its keyboard shortcut. Start with <strong>Pencil (P)</strong> — click or drag on the canvas to paint pixels.</li>
+          <li><strong>Adjust brush size.</strong> Use the three dot buttons (<strong>1px / 2px / 3px</strong>) in the toolbar, or type any value up to 64px in the custom number box.</li>
+          <li><strong>Draw your design.</strong> Left-click to draw. On a pixel that is already ON, clicking with Pencil will erase it (toggle mode). Use Eraser (E) for dedicated erasing.</li>
+          <li><strong>Navigate the canvas.</strong> Scroll wheel to zoom in/out centred on the cursor. Hold <kbd>Middle-mouse</kbd> or <kbd>Ctrl+drag</kbd> to pan. Click <strong>Fit</strong> to reset view.</li>
+          <li><strong>Undo mistakes.</strong> <kbd>Ctrl+Z</kbd> to undo, <kbd>Ctrl+Y</kbd> or <kbd>Ctrl+Shift+Z</kbd> to redo. Up to 80 steps are stored.</li>
+          <li><strong>Export.</strong> Click <strong>Arduino Sketch</strong> to download a ready-to-flash <code>.ino</code> file, or <strong>C Array</strong> for a <code>.h</code> header you can paste into any project.</li>
+        </ol>
 
-        // Clipboard
-        let clipboard = null;
+        <div class="hm-divider"></div>
+        <h3>Interface Overview</h3>
+        <p><strong>Top toolbar</strong> — Undo/Redo, Brush size, Transform operations, Export buttons, Canvas resolution picker, Zoom controls.</p>
+        <p><strong>Left sidebar</strong> — All drawing and shape tools. Hover any tool icon to see its name and keyboard shortcut.</p>
+        <p><strong>Canvas area</strong> — The pixel grid. Each cell represents one pixel on your OLED display. White = ON (lit), dark grey = OFF.</p>
+        <p><strong>Selection toolbar</strong> — Appears automatically below the main toolbar when you have an active selection. Contains copy, cut, paste, transform and crop actions scoped to the selection.</p>
+        <p><strong>Status bar</strong> — Shows current tool, cursor position, brush size, canvas dimensions, selection info, lit pixel count, and zoom level.</p>
+      </div>
 
-        function init() {
-            window.addEventListener('resize', handleResize);
-            container.addEventListener('mousedown', onMouseDown);
-            window.addEventListener('mousemove', onMouseMove);
-            window.addEventListener('mouseup', onMouseUp);
-            container.addEventListener('wheel', onWheel, { passive: false });
-            window.addEventListener('keydown', onKeyDown);
-            container.addEventListener('contextmenu', e => e.preventDefault());
+      <!-- ── DRAWING TOOLS ── -->
+      <div id="tab-tools" class="hm-panel" role="tabpanel">
+        <h2>Drawing Tools</h2>
 
-            handleResize();
-            fitToScreen();
-            saveState(); 
-            requestAnimationFrame(render);
-        }
+        <div class="tool-grid">
+          <div class="tool-card">
+            <div class="tool-card-head">
+              <div class="tool-card-icon">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/></svg>
+              </div>
+              <span class="tool-card-name">Pencil</span>
+              <span class="tool-card-key">P</span>
+            </div>
+            <p>Click to toggle pixels. Drag to paint a continuous line. Clicking an ON pixel switches to erase mode for that stroke — so one drag toggles consistently.</p>
+          </div>
 
-        // --- Core Logic ---
+          <div class="tool-card">
+            <div class="tool-card-head">
+              <div class="tool-card-icon">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m7 21-4.3-4.3c-1-1-1-2.5 0-3.4l9.6-9.6c1-1 2.5-1 3.4 0l5.6 5.6c1 1 1 2.5 0 3.4L13 21"/></svg>
+              </div>
+              <span class="tool-card-name">Eraser</span>
+              <span class="tool-card-key">E</span>
+            </div>
+            <p>Always turns pixels OFF. Drag to erase in a line. Brush size applies — a 3px eraser clears a 3px circular area per point.</p>
+          </div>
 
-        function setTool(tool) {
-            currentTool = tool;
-            document.getElementById('btn-pencil').classList.toggle('active', tool === 'pencil');
-            document.getElementById('btn-select').classList.toggle('active', tool === 'select');
-            if (tool === 'pencil') cancelSelection();
-        }
+          <div class="tool-card">
+            <div class="tool-card-head">
+              <div class="tool-card-icon">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m19 11-8-8-8.5 8.5c-.94.94-.94 2.46 0 3.4l3.64 3.64c.94.94 2.46.94 3.4 0L19 11Z"/></svg>
+              </div>
+              <span class="tool-card-name">Fill Bucket</span>
+              <span class="tool-card-key">F</span>
+            </div>
+            <p>Flood-fills a contiguous region of same-state pixels. Click an OFF pixel to fill the connected area ON, or click ON to erase it. Does not respect brush size.</p>
+          </div>
 
-        function saveState() {
-            const last = undoStack[undoStack.length - 1];
-            if (last && arraysEqual(last, pixels)) return;
+          <div class="tool-card">
+            <div class="tool-card-head">
+              <div class="tool-card-icon" style="background:var(--surface2);border-color:var(--border)">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="1"/></svg>
+              </div>
+              <span class="tool-card-name">Brush Size</span>
+              <span class="tool-card-key">—</span>
+            </div>
+            <p>Applies to Pencil, Eraser, and all Shape tools. The 3 dot presets set 1/2/3px. Type any value 1–64 in the custom box. Shapes are drawn at 1px then dilated to match brush size.</p>
+          </div>
+        </div>
 
-            undoStack.push(new Uint8Array(pixels));
-            if (undoStack.length > MAX_HISTORY) undoStack.shift();
-            redoStack = [];
-            updateHistoryUI();
-        }
+        <div class="hm-divider"></div>
+        <h3>Transforms</h3>
+        <p>The <strong>Invert, ↔ H, ↕ V, ↻ 90°</strong> buttons in the toolbar are <strong>selection-aware</strong>. If a selection is active they operate only on the selected pixels; otherwise they transform the whole canvas.</p>
 
-        function arraysEqual(a, b) {
-            for (let i = 0; i < a.length; i++) if (a[i] !== b[i]) return false;
-            return true;
-        }
+        <div class="tool-grid">
+          <div class="tool-card">
+            <div class="tool-card-head"><span class="tool-card-name">Invert</span></div>
+            <p>Swaps every pixel: ON→OFF and OFF→ON. Useful for white-on-black to black-on-white.</p>
+          </div>
+          <div class="tool-card">
+            <div class="tool-card-head"><span class="tool-card-name">Flip H / Flip V</span></div>
+            <p>Mirrors the image horizontally or vertically. Both work on selection or full canvas.</p>
+          </div>
+          <div class="tool-card">
+            <div class="tool-card-head"><span class="tool-card-name">Rotate 90°</span></div>
+            <p>Rotates clockwise 90°. On a selection, the selection box resizes (W↔H swap) and recentres. On the full canvas the pixel grid is rotated.</p>
+          </div>
+          <div class="tool-card">
+            <div class="tool-card-head"><span class="tool-card-name">Clear</span></div>
+            <p>Erases the entire canvas. Undoable with Ctrl+Z.</p>
+          </div>
+        </div>
+      </div>
 
-        function undo() {
-            if (undoStack.length > 1) {
-                redoStack.push(undoStack.pop());
-                pixels = new Uint8Array(undoStack[undoStack.length - 1]);
-                cancelSelection();
-                updateHistoryUI();
-            }
-        }
+      <!-- ── SHAPES ── -->
+      <div id="tab-shapes" class="hm-panel" role="tabpanel">
+        <h2>Shape Tools</h2>
+        <p>All shape tools work the same way: <strong>click to set the start point, drag to the end point, release to commit.</strong> A green live preview tracks your drag. An orange dot marks the anchor (start) point. Brush size thickens all outlines.</p>
 
-        function redo() {
-            if (redoStack.length > 0) {
-                const state = redoStack.pop();
-                pixels = new Uint8Array(state);
-                undoStack.push(state);
-                cancelSelection();
-                updateHistoryUI();
-            }
-        }
+        <div class="hm-tip"><strong>Shift constraint:</strong> While dragging the <strong>Ellipse</strong> tool, hold <kbd>Shift</kbd> to constrain it to a perfect circle. The <strong>Circle</strong> tool is always perfectly round without needing Shift.</div>
 
-        function updateHistoryUI() {
-            historyLabel.textContent = `Steps: ${undoStack.length - 1}`;
-        }
+        <div class="tool-grid">
+          <div class="tool-card">
+            <div class="tool-card-head"><span class="tool-card-name">Line</span><span class="tool-card-key">L</span></div>
+            <p>Draws a straight line between two points using Bresenham's algorithm. Supports brush size for thick lines.</p>
+          </div>
+          <div class="tool-card">
+            <div class="tool-card-head"><span class="tool-card-name">Rectangle</span><span class="tool-card-key">R</span></div>
+            <p>Drag to draw a hollow rectangle outline. Use <strong>Filled Rect</strong> below it for a solid filled box.</p>
+          </div>
+          <div class="tool-card">
+            <div class="tool-card-head"><span class="tool-card-name">Rounded Rect</span><span class="tool-card-key">—</span></div>
+            <p>Rectangle with rounded corners. Corner radius scales automatically with the box size (max 6px).</p>
+          </div>
+          <div class="tool-card">
+            <div class="tool-card-head"><span class="tool-card-name">Ellipse</span><span class="tool-card-key">—</span></div>
+            <p>Free-form ellipse from corner to corner of the bounding box. Hold <kbd>Shift</kbd> during drag for a perfect circle.</p>
+          </div>
+          <div class="tool-card">
+            <div class="tool-card-head"><span class="tool-card-name">Circle</span><span class="tool-card-key">C</span></div>
+            <p>Always draws a perfect circle. Drag from the top-left corner — the radius is the smaller of horizontal/vertical distance.</p>
+          </div>
+          <div class="tool-card">
+            <div class="tool-card-head"><span class="tool-card-name">Triangle</span><span class="tool-card-key">T</span></div>
+            <p>Isosceles triangle — apex at the top-centre, base at the bottom. Filled variant available below it.</p>
+          </div>
+          <div class="tool-card">
+            <div class="tool-card-head"><span class="tool-card-name">Diamond</span><span class="tool-card-key">D</span></div>
+            <p>Draws a 4-point diamond (rotated square) inside the drag bounding box. Filled variant available.</p>
+          </div>
+          <div class="tool-card">
+            <div class="tool-card-head"><span class="tool-card-name">5-Point Star</span><span class="tool-card-key">—</span></div>
+            <p>Draws a 5-point star outline inside the bounding box. Inner radius is 40% of the outer radius.</p>
+          </div>
+          <div class="tool-card">
+            <div class="tool-card-head"><span class="tool-card-name">Arrow</span><span class="tool-card-key">—</span></div>
+            <p>Line with an arrowhead at the end point. Head length is ~28% of the shaft length.</p>
+          </div>
+          <div class="tool-card">
+            <div class="tool-card-head"><span class="tool-card-name">Cross / Plus</span><span class="tool-card-key">—</span></div>
+            <p>Draws a plus-sign cross. Arm thickness scales to ~15% of the bounding box size.</p>
+          </div>
+        </div>
 
-        // --- Interaction ---
+        <div class="hm-tip"><strong>Filled variants:</strong> Rectangle, Ellipse, Circle, Triangle, and Diamond each have a filled version (solid black icon) directly below the outline version in the sidebar.</div>
+      </div>
 
-        function onMouseDown(e) {
-            const isMiddle = e.button === 1;
-            const isCtrl = e.ctrlKey && e.button === 0;
-            const coord = getPixelCoord(e.clientX, e.clientY);
+      <!-- ── SELECTION ── -->
+      <div id="tab-select" class="hm-panel" role="tabpanel">
+        <h2>Selection Tool</h2>
+        <p>Press <kbd>S</kbd> or click the dashed-rectangle icon at the bottom of the sidebar to activate the selection tool.</p>
 
-            if (isMiddle || isCtrl) {
-                isPanning = true;
-                dragStart = { x: e.clientX, y: e.clientY };
-                return;
-            }
+        <h3>Creating a Selection</h3>
+        <ol class="hm-steps">
+          <li>Click and drag on the canvas to draw a rectangular marquee (marching blue ants).</li>
+          <li>Release the mouse. The selection is now active and the <strong>Selection toolbar</strong> appears below the main toolbar showing the selection size and position.</li>
+          <li>To deselect at any time press <kbd>Esc</kbd> or click outside the selection on the canvas.</li>
+        </ol>
 
-            if (e.button === 0) {
-                if (currentTool === 'pencil') {
-                    isDrawing = true;
-                    if (isValid(coord.x, coord.y)) {
-                        drawMode = pixels[coord.y * COLS + coord.x] === 1 ? 0 : 1;
-                        togglePixel(coord.x, coord.y, drawMode);
-                        dragStart = coord;
-                    }
-                } else if (currentTool === 'select') {
-                    if (selection.active && coord.x >= selection.x && coord.x < selection.x + selection.w && coord.y >= selection.y && coord.y < selection.y + selection.h) {
-                        startMovingSelection(e.altKey);
-                        dragStart = coord;
-                    } else {
-                        cancelSelection();
-                        isSelecting = true;
-                        marqueeStart = coord;
-                        selection = { x: coord.x, y: coord.y, w: 0, h: 0, active: false };
-                    }
-                }
-            }
-        }
+        <h3>Moving</h3>
+        <p>Click and drag <strong>inside</strong> the selection box to move it. Selected pixels are lifted off the canvas (shown semi-transparent while floating) and stamped down when you release. Hold <kbd>Alt</kbd> while starting a drag to <strong>duplicate</strong> instead of move. Use arrow keys to nudge 1px, <kbd>Shift+Arrow</kbd> to jump 8px.</p>
 
-        function onMouseMove(e) {
-            const coord = getPixelCoord(e.clientX, e.clientY);
+        <h3>Resizing</h3>
+        <p>Eight blue square handles appear at the corners and edge midpoints of the active selection. Drag any handle to <strong>resize</strong> the selection content. The pixels inside are scaled using nearest-neighbour to fit the new size — exactly like MS Paint. The original pixels are removed from the canvas as soon as you start dragging a handle.</p>
 
-            if (isPanning) {
-                offsetX += e.clientX - dragStart.x;
-                offsetY += e.clientY - dragStart.y;
-                dragStart = { x: e.clientX, y: e.clientY };
-                return;
-            }
+        <h3>Selection Actions</h3>
+        <div class="tool-grid">
+          <div class="tool-card"><div class="tool-card-head"><span class="tool-card-name">Copy</span><span class="tool-card-key">Ctrl+C</span></div><p>Copies selection pixels to internal clipboard. Does not modify the canvas.</p></div>
+          <div class="tool-card"><div class="tool-card-head"><span class="tool-card-name">Cut</span><span class="tool-card-key">Ctrl+X</span></div><p>Copies to clipboard and erases selection pixels from the canvas.</p></div>
+          <div class="tool-card"><div class="tool-card-head"><span class="tool-card-name">Paste</span><span class="tool-card-key">Ctrl+V</span></div><p>Pastes clipboard as a floating selection at position (2,2). Drag to reposition before it stamps down.</p></div>
+          <div class="tool-card"><div class="tool-card-head"><span class="tool-card-name">Crop</span><span class="tool-card-key">—</span></div><p>Erases all pixels <em>outside</em> the selection. The selection itself is cleared afterwards.</p></div>
+          <div class="tool-card"><div class="tool-card-head"><span class="tool-card-name">Delete</span><span class="tool-card-key">Del</span></div><p>Erases all pixels inside the selection. Undoable.</p></div>
+          <div class="tool-card"><div class="tool-card-head"><span class="tool-card-name">Transforms</span><span class="tool-card-key">—</span></div><p>Invert, Flip H/V, and Rotate 90° in the selection toolbar apply only to the selected area.</p></div>
+        </div>
 
-            if (isDrawing) {
-                if (isValid(coord.x, coord.y)) {
-                    bresenham(dragStart.x, dragStart.y, coord.x, coord.y, drawMode);
-                    dragStart = coord;
-                }
-            }
+        <div class="hm-warn"><strong>Note:</strong> Only ON (white) pixels are treated as opaque when pasting or stamping. OFF (dark) pixels in a selection are transparent — they will not overwrite existing ON pixels on the canvas beneath them.</div>
+      </div>
 
-            if (isSelecting) {
-                const x1 = Math.max(0, Math.min(COLS - 1, marqueeStart.x));
-                const y1 = Math.max(0, Math.min(ROWS - 1, marqueeStart.y));
-                const x2 = Math.max(0, Math.min(COLS - 1, coord.x));
-                const y2 = Math.max(0, Math.min(ROWS - 1, coord.y));
-                selection.x = Math.min(x1, x2);
-                selection.y = Math.min(y1, y2);
-                selection.w = Math.abs(x1 - x2) + 1;
-                selection.h = Math.abs(y1 - y2) + 1;
-                selection.active = true;
-            }
+      <!-- ── EXPORT & IMPORT ── -->
+      <div id="tab-export" class="hm-panel" role="tabpanel">
+        <h2>Export &amp; Import</h2>
 
-            if (isMovingSelection) {
-                const dx = coord.x - dragStart.x;
-                const dy = coord.y - dragStart.y;
-                if (dx !== 0 || dy !== 0) {
-                    selection.x += dx;
-                    selection.y += dy;
-                    dragStart = coord;
-                }
-            }
-            updateSelectionStatus();
-        }
+        <div class="export-grid">
+          <div class="export-card">
+            <div class="export-card-title">PNG Image</div>
+            <span class="export-card-tag">.png</span>
+            <p>Exports the canvas as a 1:1 monochrome PNG at the native pixel resolution (e.g. 128×64 px). White pixels = ON, black = OFF. Use for previewing or sharing your design.</p>
+          </div>
+          <div class="export-card">
+            <div class="export-card-title">CSV Data</div>
+            <span class="export-card-tag">.csv</span>
+            <p>Exports a text file where each row is a canvas row and each value is 0 (OFF) or 1 (ON). Use this to save your work and re-import it later for continued editing.</p>
+          </div>
+          <div class="export-card">
+            <div class="export-card-title">C Array Header</div>
+            <span class="export-card-tag">.h</span>
+            <p>Exports a <code>const uint8_t bitmap[] PROGMEM</code> array. Paste into any Arduino / ESP32 sketch. Each byte packs 8 horizontal pixels, MSB first — compatible with Adafruit GFX <code>drawBitmap()</code>.</p>
+          </div>
+          <div class="export-card">
+            <div class="export-card-title">Arduino Sketch</div>
+            <span class="export-card-tag">.ino</span>
+            <p>Exports a complete, ready-to-flash Arduino sketch pre-configured for the <strong>Adafruit SSD1306</strong> library. Includes all <code>#include</code>s, display init, and <code>drawBitmap()</code> call. Default wiring: SDA=D2, SCL=D1 (ESP8266/ESP32 NodeMCU).</p>
+          </div>
+        </div>
 
-        function onMouseUp() {
-            if (isDrawing) saveState();
-            if (isMovingSelection) { commitSelection(); saveState(); }
-            isDrawing = false;
-            isPanning = false;
-            isSelecting = false;
-            isMovingSelection = false;
-        }
+        <div class="hm-tip"><strong>Importing CSV:</strong> Click <strong>Import</strong> and select a previously exported <code>.csv</code> file. If the file dimensions differ from the current canvas, the canvas will automatically resize to match and the history will be cleared.</div>
 
-        function onKeyDown(e) {
-            const key = e.key.toLowerCase();
-            const ctrl = e.ctrlKey || e.metaKey;
-            if (key === 'p') setTool('pencil');
-            if (key === 's') setTool('select');
-            if (ctrl && key === 'z') { e.preventDefault(); undo(); }
-            if (ctrl && key === 'y') { e.preventDefault(); redo(); }
-            if (key === 'escape') cancelSelection();
-            if (key === 'delete' || key === 'backspace') deleteSelection();
-            if (ctrl && key === 'c') copySelection();
-            if (ctrl && key === 'x') cutSelection();
-            if (ctrl && key === 'v') pasteClipboard();
-            if (selection.active && ['arrowup', 'arrowdown', 'arrowleft', 'arrowright'].includes(key)) {
-                e.preventDefault();
-                const amt = e.shiftKey ? 8 : 1;
-                startMovingSelection();
-                if (key === 'arrowup') selection.y -= amt;
-                if (key === 'arrowdown') selection.y += amt;
-                if (key === 'arrowleft') selection.x -= amt;
-                if (key === 'arrowright') selection.x += amt;
-                commitSelection();
-                saveState();
-            }
-        }
+        <div class="hm-divider"></div>
+        <h3>Using the C Array in Arduino</h3>
+        <p>After exporting <strong>C Array</strong>, open the downloaded <code>oled_bitmap.h</code> and copy the array declaration into your sketch, or <code>#include</code> it. Then call:</p>
+        <p><code>display.drawBitmap(x, y, bitmap, WIDTH, HEIGHT, SSD1306_WHITE);</code></p>
+        <p>Replace <code>x</code>, <code>y</code> with your desired screen position. <code>WIDTH</code> and <code>HEIGHT</code> match your canvas resolution.</p>
 
-        // --- Selection ---
+        <div class="hm-divider"></div>
+        <h3>Canvas Resolution</h3>
+        <p>Use the <strong>Canvas</strong> dropdown to change resolution. 16 presets cover all common OLED sizes:</p>
+        <p><strong>SSD1306:</strong> 128×64, 128×32 &nbsp;|&nbsp; <strong>SH1106:</strong> 128×64 &nbsp;|&nbsp; <strong>SSD1327:</strong> 128×128 &nbsp;|&nbsp; <strong>SSD1309:</strong> 128×64 &nbsp;|&nbsp; <strong>Tiny OLEDs:</strong> 96×16, 72×40, 64×32, 50×16</p>
+        <p>Choose <strong>Custom…</strong> to enter any width × height up to 1024×1024. Changing resolution when the canvas has content will ask for confirmation and clear the artwork.</p>
 
-        function startMovingSelection(duplicate = false) {
-            if (!selection.active || isMovingSelection) return;
-            isMovingSelection = true;
-            selectionBuffer = new Uint8Array(selection.w * selection.h);
-            for (let j = 0; j < selection.h; j++) {
-                for (let i = 0; i < selection.w; i++) {
-                    const sx = selection.x + i, sy = selection.y + j;
-                    if (isValid(sx, sy)) {
-                        selectionBuffer[j * selection.w + i] = pixels[sy * COLS + sx];
-                        if (!duplicate) pixels[sy * COLS + sx] = 0;
-                    }
-                }
-            }
-        }
+        <div class="hm-warn"><strong>Arduino Sketch pin assignment:</strong> The exported sketch now uses <code>Wire.begin()</code> so it works on standard board defaults (Uno, Nano, ESP32, ESP8266 default mapping). If your board requires custom I²C pins, change it to <code>Wire.begin(SDA, SCL)</code>.</div>
+      </div>
 
-        function commitSelection() {
-            if (!selection.active || !selectionBuffer) return;
-            for (let j = 0; j < selection.h; j++) {
-                for (let i = 0; i < selection.w; i++) {
-                    const tx = selection.x + i, ty = selection.y + j;
-                    if (isValid(tx, ty)) pixels[ty * COLS + tx] = selectionBuffer[j * selection.w + i];
-                }
-            }
-            selectionBuffer = null;
-        }
+      <!-- ── KEYBOARD SHORTCUTS ── -->
+      <div id="tab-keys" class="hm-panel" role="tabpanel">
+        <h2>Keyboard Shortcuts</h2>
 
-        function cancelSelection() {
-            if (isMovingSelection) commitSelection();
-            selection.active = false;
-            selectionBuffer = null;
-            updateSelectionStatus();
-        }
+        <h3>Tools</h3>
+        <table class="kb-table" aria-label="Tool keyboard shortcuts">
+          <thead><tr><th>Key</th><th>Action</th></tr></thead>
+          <tbody>
+            <tr><td><kbd>P</kbd></td><td>Pencil tool</td></tr>
+            <tr><td><kbd>E</kbd></td><td>Eraser tool</td></tr>
+            <tr><td><kbd>F</kbd></td><td>Flood Fill tool</td></tr>
+            <tr><td><kbd>L</kbd></td><td>Line tool</td></tr>
+            <tr><td><kbd>R</kbd></td><td>Rectangle tool</td></tr>
+            <tr><td><kbd>C</kbd></td><td>Perfect Circle tool</td></tr>
+            <tr><td><kbd>T</kbd></td><td>Triangle tool</td></tr>
+            <tr><td><kbd>D</kbd></td><td>Diamond tool</td></tr>
+            <tr><td><kbd>S</kbd></td><td>Selection tool</td></tr>
+          </tbody>
+        </table>
 
-        function deleteSelection() {
-            if (!selection.active) return;
-            for (let j = 0; j < selection.h; j++) {
-                for (let i = 0; i < selection.w; i++) {
-                    const tx = selection.x + i, ty = selection.y + j;
-                    if (isValid(tx, ty)) pixels[ty * COLS + tx] = 0;
-                }
-            }
-            selection.active = false;
-            saveState();
-        }
+        <h3>Edit</h3>
+        <table class="kb-table" aria-label="Edit keyboard shortcuts">
+          <thead><tr><th>Key</th><th>Action</th></tr></thead>
+          <tbody>
+            <tr><td><kbd>Ctrl</kbd><kbd>Z</kbd></td><td>Undo (up to 80 steps)</td></tr>
+            <tr><td><kbd>Ctrl</kbd><kbd>Y</kbd> or <kbd>Ctrl</kbd><kbd>Shift</kbd><kbd>Z</kbd></td><td>Redo</td></tr>
+            <tr><td><kbd>Ctrl</kbd><kbd>C</kbd></td><td>Copy selection</td></tr>
+            <tr><td><kbd>Ctrl</kbd><kbd>X</kbd></td><td>Cut selection</td></tr>
+            <tr><td><kbd>Ctrl</kbd><kbd>V</kbd></td><td>Paste</td></tr>
+            <tr><td><kbd>Del</kbd> / <kbd>Backspace</kbd></td><td>Delete selection pixels</td></tr>
+            <tr><td><kbd>Esc</kbd></td><td>Cancel / deselect</td></tr>
+          </tbody>
+        </table>
 
-        function copySelection() {
-            if (!selection.active) return;
-            const data = new Uint8Array(selection.w * selection.h);
-            for (let j = 0; j < selection.h; j++) {
-                for (let i = 0; i < selection.w; i++) {
-                    const sx = selection.x + i, sy = selection.y + j;
-                    data[j * selection.w + i] = isValid(sx, sy) ? pixels[sy * COLS + sx] : 0;
-                }
-            }
-            clipboard = { w: selection.w, h: selection.h, data };
-        }
+        <h3>Selection Movement</h3>
+        <table class="kb-table" aria-label="Selection movement shortcuts">
+          <thead><tr><th>Key</th><th>Action</th></tr></thead>
+          <tbody>
+            <tr><td><kbd>↑ ↓ ← →</kbd></td><td>Nudge selection 1px</td></tr>
+            <tr><td><kbd>Shift</kbd> + <kbd>Arrow</kbd></td><td>Jump selection 8px</td></tr>
+          </tbody>
+        </table>
 
-        function cutSelection() { copySelection(); deleteSelection(); }
+        <h3>Navigation</h3>
+        <table class="kb-table" aria-label="Navigation shortcuts">
+          <thead><tr><th>Key / Action</th><th>Result</th></tr></thead>
+          <tbody>
+            <tr><td>Scroll wheel</td><td>Zoom in / out centred on cursor</td></tr>
+            <tr><td>Pinch (touch)</td><td>Zoom in / out (mobile/tablet)</td></tr>
+            <tr><td>Middle-click + drag</td><td>Pan the canvas</td></tr>
+            <tr><td><kbd>Ctrl</kbd> + left-drag</td><td>Pan the canvas</td></tr>
+            <tr><td><kbd>Shift</kbd> + drag (Ellipse)</td><td>Constrain to perfect circle</td></tr>
+            <tr><td><kbd>Alt</kbd> + drag selection</td><td>Duplicate instead of move</td></tr>
+          </tbody>
+        </table>
+      </div>
 
-        function pasteClipboard() {
-            if (!clipboard) return;
-            cancelSelection();
-            selection = { x: 2, y: 2, w: clipboard.w, h: clipboard.h, active: true };
-            selectionBuffer = new Uint8Array(clipboard.data);
-            commitSelection();
-            saveState();
-            setTool('select');
-        }
+      <!-- ── TIPS ── -->
+      <div id="tab-tips" class="hm-panel" role="tabpanel">
+        <h2>Tips &amp; Tricks</h2>
 
-        // --- Utils ---
+        <div class="hm-tip"><strong>Zoom in for precision.</strong> Scroll to zoom in until each pixel is large enough to click precisely. The status bar shows your exact cursor position (x, y) so you can line things up perfectly.</div>
 
-        function handleResize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+        <div class="hm-tip"><strong>Use the grid gap as a guide.</strong> At scales above 5× a 1px gap appears between pixels, making the grid visible. This helps you count and align pixels accurately.</div>
 
-        function fitToScreen() {
-            const padding = 120;
-            const scaleX = (window.innerWidth - padding) / COLS;
-            const scaleY = (window.innerHeight - padding) / ROWS;
-            scale = Math.floor(Math.min(scaleX, scaleY));
-            if (scale < 1) scale = 1;
-            offsetX = (window.innerWidth - (COLS * scale)) / 2;
-            offsetY = (window.innerHeight - (ROWS * scale)) / 2;
-            updateUI();
-        }
+        <div class="hm-tip"><strong>Thick shape outlines.</strong> Set brush size to 2–4px before drawing a shape to get thick outlines. The dilation algorithm ensures clean, round stroke ends on all shapes including circles and diagonals.</div>
 
-        function clearCanvas() { pixels.fill(0); cancelSelection(); saveState(); }
+        <div class="hm-tip"><strong>Workflow for logos.</strong> Draw your design at the exact canvas resolution (128×64 for most OLEDs). Use Fill to colour large areas, then Eraser to clean up. Invert if you want a white-on-black look (most OLEDs default to white-on-black).</div>
 
-        function updateUI() { zoomDisplay.textContent = Math.round(scale * 100); }
+        <div class="hm-tip"><strong>Pixel-perfect icons.</strong> Start with the Circle or Ellipse tool for rounded shapes, then refine individual pixels with Pencil at high zoom. Flood-fill interior areas to save time.</div>
 
-        function updateSelectionStatus() {
-            selectionStatus.innerHTML = selection.active ? 
-                `Selection: <b>${selection.w}x${selection.h}</b> at (${selection.x}, ${selection.y})` : 
-                "No selection active";
-        }
+        <div class="hm-tip"><strong>Selection as a stamp.</strong> Draw something, select it, Copy (<kbd>Ctrl+C</kbd>), then Paste (<kbd>Ctrl+V</kbd>) repeatedly to place copies anywhere. Hold <kbd>Alt</kbd> while dragging an existing selection to duplicate it in place.</div>
 
-        function getPixelCoord(clientX, clientY) {
-            return { x: Math.floor((clientX - offsetX) / scale), y: Math.floor((clientY - offsetY) / scale) };
-        }
+        <div class="hm-tip"><strong>Crop to content.</strong> Draw your sprite in any corner, select just the sprite area, then click <strong>Crop</strong> in the selection toolbar. This erases all pixels outside the selection, cleaning up the canvas.</div>
 
-        function onWheel(e) {
-            e.preventDefault();
-            const oldScale = scale;
-            if (e.deltaY < 0) scale *= 1.2; else scale /= 1.2;
-            scale = Math.max(0.1, Math.min(scale, 150));
-            offsetX = e.clientX - (e.clientX - offsetX) * (scale / oldScale);
-            offsetY = e.clientY - (e.clientY - offsetY) * (scale / oldScale);
-            updateUI();
-        }
+        <div class="hm-tip"><strong>Save your work.</strong> There is no server-side storage — always export <strong>CSV</strong> before closing the tab if you want to continue later. Re-import the CSV to restore the canvas exactly, including any custom resolution.</div>
 
-        function isValid(x, y) { return x >= 0 && x < COLS && y >= 0 && y < ROWS; }
+        <div class="hm-tip"><strong>Mobile / tablet use.</strong> The editor fully supports touch: tap to draw, drag to paint, and use a two-finger pinch to zoom. The toolbar is scrollable so all buttons are reachable on small screens.</div>
 
-        function togglePixel(x, y, val) { if (isValid(x, y)) pixels[y * COLS + x] = val; }
+        <div class="hm-tip"><strong>Test before flashing.</strong> After exporting the Arduino Sketch, open it in the Arduino IDE and verify/compile before uploading. Check that <code>SCREEN_ADDRESS</code> (0x3C or 0x3D) matches your specific OLED module — some modules use 0x3D.</div>
 
-        function bresenham(x0, y0, x1, y1, val) {
-            const dx = Math.abs(x1 - x0), dy = Math.abs(y1 - y0);
-            const sx = (x0 < x1) ? 1 : -1, sy = (y0 < y1) ? 1 : -1;
-            let err = dx - dy;
-            while (true) {
-                togglePixel(x0, y0, val);
-                if (x0 === x1 && y0 === y1) break;
-                const e2 = 2 * err;
-                if (e2 > -dy) { err -= dy; x0 += sx; }
-                if (e2 < dx) { err += dx; y0 += sy; }
-            }
-        }
+        <div class="hm-divider"></div>
+        <h3>Common OLED I²C Addresses</h3>
+        <table class="kb-table" aria-label="Common OLED I2C addresses">
+          <thead><tr><th>Module / Controller</th><th>Default Address</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr><td>SSD1306 128×64 (most)</td><td><code>0x3C</code></td><td>SA0 pin low (default)</td></tr>
+            <tr><td>SSD1306 128×64 (alt)</td><td><code>0x3D</code></td><td>SA0 pin high</td></tr>
+            <tr><td>SSD1306 128×32</td><td><code>0x3C</code></td><td>—</td></tr>
+            <tr><td>SH1106 128×64</td><td><code>0x3C</code></td><td>Use Adafruit_SH110X lib</td></tr>
+            <tr><td>SSD1327 128×128</td><td><code>0x3C</code></td><td>Greyscale — use with GFX</td></tr>
+          </tbody>
+        </table>
+      </div>
 
-        // --- Export/Import ---
+    </div><!-- .hm-body -->
+  </div><!-- #help-modal -->
+</div><!-- #help-overlay -->
 
-        function exportPNG() {
-            const temp = document.createElement('canvas');
-            temp.width = COLS; temp.height = ROWS;
-            const tCtx = temp.getContext('2d');
-            const imgData = tCtx.createImageData(COLS, ROWS);
-            for (let i = 0; i < pixels.length; i++) {
-                const val = pixels[i] === 1 ? 255 : 0;
-                const idx = i * 4;
-                imgData.data[idx] = val; imgData.data[idx+1] = val; imgData.data[idx+2] = val; imgData.data[idx+3] = 255;
-            }
-            tCtx.putImageData(imgData, 0, 0);
-            const link = document.createElement('a');
-            link.download = 'pixel_art.png'; link.href = temp.toDataURL(); link.click();
-        }
+<script>
+// ════════════════════════════════════════════════════
+//  DYNAMIC FAVICON GENERATION (PNG fallback + Apple Touch Icon)
+// ════════════════════════════════════════════════════
+(function generateIcons() {
+    try {
+        // 32×32 PNG favicon
+        const fc = document.createElement('canvas');
+        fc.width = fc.height = 32;
+        const fctx = fc.getContext('2d');
+        fctx.fillStyle = '#0c0c10';
+        fctx.fillRect(0, 0, 32, 32);
+        fctx.fillStyle = '#00e5a0';
+        const dots = [[4,4],[9,4],[18,4],[25,4],[4,9],[14,9],[20,9],[25,9],
+                      [4,14],[9,14],[14,14],[20,14],[4,20],[14,20],[20,20],
+                      [25,20],[9,25],[14,25],[20,25],[25,25]];
+        dots.forEach(function(d){ fctx.fillRect(d[0], d[1], 3, 3); });
+        var pngEl = document.getElementById('favicon-png');
+        if (pngEl) pngEl.href = fc.toDataURL('image/png');
 
-        function exportCSV() {
-            let csvContent = "";
-            let tc = COLS, tr = ROWS, sx = 0, sy = 0;
-            if (selection.active) { tc = selection.w; tr = selection.h; sx = selection.x; sy = selection.y; }
-            for (let y = 0; y < tr; y++) {
-                const row = [];
-                for (let x = 0; x < tc; x++) row.push(isValid(sx + x, sy + y) ? pixels[(sy + y) * COLS + (sx + x)] : 0);
-                csvContent += row.join(",") + "\n";
-            }
-            const blob = new Blob([csvContent], { type: 'text/csv' });
-            const link = document.createElement('a');
-            link.download = selection.active ? 'selection.csv' : 'canvas.csv';
-            link.href = URL.createObjectURL(blob); link.click();
-        }
+        // 180×180 Apple Touch Icon
+        var sc = 5.5;
+        var ac = document.createElement('canvas');
+        ac.width = ac.height = 180;
+        var actx = ac.getContext('2d');
+        actx.fillStyle = '#0c0c10';
+        actx.fillRect(0, 0, 180, 180);
+        actx.fillStyle = '#00e5a0';
+        dots.forEach(function(d){ actx.fillRect(Math.round(d[0]*sc), Math.round(d[1]*sc), 14, 14); });
+        var appleEl = document.getElementById('apple-touch-icon');
+        if (appleEl) appleEl.href = ac.toDataURL('image/png');
+        // ── OG / Twitter preview image (1200×630) ──
+        // Generated from canvas so no external image file is needed
+        var og = document.createElement('canvas');
+        og.width = 1200; og.height = 630;
+        var ogx = og.getContext('2d');
+        // Background
+        ogx.fillStyle = '#0c0c10';
+        ogx.fillRect(0, 0, 1200, 630);
+        // Grid of pixel cells (simulated canvas)
+        var cellSize = 8, cols = 128, rows = 64;
+        var gridX = 60, gridY = 80;
+        ogx.fillStyle = '#1c1c26';
+        ogx.fillRect(gridX, gridY, cols * cellSize, rows * cellSize);
+        // Sample pixel art — "OLED" text in pixels
+        var art = [
+            [2,2],[2,3],[2,4],[2,5],[2,6],[3,6],[4,6],[4,2],[4,3],[4,4],[4,5],        // O
+            [6,2],[6,3],[6,4],[6,5],[6,6],[7,6],[8,6],                                 // L
+            [10,2],[11,2],[12,2],[10,4],[11,4],[12,4],[10,6],[11,6],[12,6],             // E
+            [10,2],[10,3],[10,4],[10,5],[10,6],[12,2],[12,3],[12,4],[12,5],[12,6],      // D (reuse cols)
+            [14,2],[15,2],[16,2],[14,3],[16,3],[14,4],[16,4],[14,5],[16,5],[14,6],[15,6],[16,6] // D
+        ];
+        // Simple "OLED" word pattern
+        var wordPx = [
+            // O
+            [1,1],[2,1],[3,1],[1,2],[3,2],[1,3],[3,3],[1,4],[3,4],[1,5],[2,5],[3,5],
+            // L
+            [5,1],[5,2],[5,3],[5,4],[5,5],[6,5],[7,5],
+            // E
+            [9,1],[10,1],[11,1],[9,2],[9,3],[10,3],[9,4],[9,5],[10,5],[11,5],
+            // D
+            [13,1],[14,1],[13,2],[15,2],[13,3],[15,3],[13,4],[15,4],[13,5],[14,5]
+        ];
+        ogx.fillStyle = '#ffffff';
+        wordPx.forEach(function(p) { ogx.fillRect(gridX + (p[0]+4)*cellSize, gridY + (p[1]+2)*cellSize, cellSize-1, cellSize-1); });
+        // Some random decorative pixels
+        var deco = [[20,1],[21,3],[25,2],[30,1],[35,4],[40,2],[45,3],[50,1],[55,4],[60,2],[65,3],
+                    [70,1],[75,4],[80,2],[85,3],[90,1],[95,4],[100,2],[105,3],[110,1],[115,4],[120,2],
+                    [20,8],[25,6],[30,9],[35,7],[40,8],[45,6],[50,9],[55,7],[60,8],[65,6]];
+        ogx.fillStyle = 'rgba(0,229,160,0.4)';
+        deco.forEach(function(p) { if(p[0]<cols && p[1]<rows) ogx.fillRect(gridX + p[0]*cellSize, gridY + p[1]*cellSize, cellSize-1, cellSize-1); });
+        // Title text
+        ogx.fillStyle = '#00e5a0';
+        ogx.font = 'bold 52px system-ui, sans-serif';
+        ogx.fillText('OLED Pixel Studio', 60, 420);
+        ogx.fillStyle = '#9090b0';
+        ogx.font = '28px system-ui, sans-serif';
+        ogx.fillText('Free browser-based bitmap editor for SSD1306 · Arduino · ESP32', 60, 470);
+        ogx.fillStyle = '#55556a';
+        ogx.font = '22px monospace';
+        ogx.fillText('by BlinkNBuild', 60, 510);
+        var ogDataUrl = og.toDataURL('image/png');
+        var ogMeta = document.getElementById('og-image-meta');
+        var twMeta = document.getElementById('tw-image-meta');
+        // Keep static, crawlable social URLs unless missing.
+        if (ogMeta && !ogMeta.content) ogMeta.content = ogDataUrl;
+        if (twMeta && !twMeta.content) twMeta.content = ogDataUrl;
+    } catch(e) { /* silently ignore — SVG favicon still works */ }
+})();
 
-        function triggerImport() { document.getElementById('import-input').click(); }
+// ════════════════════════════════════════════════════
+//  CONSTANTS
+// ════════════════════════════════════════════════════
+let COLS = 128, ROWS = 64;
+const SHAPE_TOOLS = ['line','rect','rect-fill','ellipse','ellipse-fill',
+    'circle','circle-fill','triangle','triangle-fill','diamond','diamond-fill',
+    'star','arrow','rounded-rect','cross'];
 
-        function handleImport(e) {
-            const file = e.target.files[0]; if (!file) return;
-            const reader = new FileReader();
-            reader.onload = (event) => {
-                const rows = event.target.result.trim().split("\n");
-                const newPixels = new Uint8Array(COLS * ROWS);
-                rows.forEach((rowStr, y) => {
-                    if (y >= ROWS) return;
-                    const vals = rowStr.split(",");
-                    vals.forEach((v, x) => { if (x < COLS) newPixels[y * COLS + x] = parseInt(v) || 0; });
-                });
-                pixels = newPixels; saveState();
+const canvas    = document.getElementById('canvas-element');
+const ctx       = canvas.getContext('2d', { alpha: false });
+const container = document.getElementById('editor-container');
+const selToolbar = document.getElementById('sel-toolbar');
+
+// Resolve CSS custom properties once
+const _cssVars  = getComputedStyle(document.documentElement);
+const SEL_COLOR     = _cssVars.getPropertyValue('--selection').trim()     || '#4488ff';
+const SEL_COLOR_DIM = _cssVars.getPropertyValue('--selection-dim').trim() || 'rgba(68,136,255,0.18)';
+
+// ════════════════════════════════════════════════════
+//  STATE
+// ════════════════════════════════════════════════════
+let pixels    = new Uint8Array(COLS * ROWS);
+let scale = 1, offsetX = 0, offsetY = 0;
+let currentTool = 'pencil';
+let brushSize   = 1;
+let shiftDown   = false;
+
+let isDrawing = false, isPanning = false, isSelecting = false;
+let isMovingSelection = false, isShaping = false, isResizingSelection = false;
+let drawMode = 1;
+let dragStartPx  = { x: 0, y: 0 };
+let dragStartScr = { x: 0, y: 0 };
+let shapeStart   = { x: 0, y: 0 };
+let shapeEnd     = { x: 0, y: 0 };
+let marqueeStart = { x: 0, y: 0 };
+let cursorPx     = { x: -1, y: -1 };
+
+let selection       = { x:0, y:0, w:0, h:0, active:false };
+let selectionBuffer = null;
+let selBufferW      = 0;  // explicit buffer dims — may differ from selection.w/h after resize
+let selBufferH      = 0;
+let clipboard       = null;
+
+let resizeHandle  = null;
+let resizeOrig    = null;
+let resizeDragScr = { x:0, y:0 };
+
+let undoStack = [], redoStack = [];
+const MAX_HISTORY = 80;
+
+// ════════════════════════════════════════════════════
+//  INIT
+// ════════════════════════════════════════════════════
+function init() {
+    window.addEventListener('resize', handleResize);
+    container.addEventListener('mousedown', onMouseDown);
+    window.addEventListener('mousemove',   onMouseMove);
+    window.addEventListener('mouseup',     onMouseUp);
+    container.addEventListener('mouseleave', () => {
+        cursorPx = { x:-1, y:-1 };
+        document.getElementById('s-pos').textContent = ' --';
+    });
+    container.addEventListener('wheel', onWheel, { passive: false });
+    window.addEventListener('keydown', onKeyDown);
+    window.addEventListener('keyup',   e => { if (e.key === 'Shift') shiftDown = false; });
+    window.addEventListener('blur', () => { shiftDown = false; isPanning = false; });
+    container.addEventListener('contextmenu', e => e.preventDefault());
+    container.addEventListener('touchstart',  onTouchStart,  { passive: false });
+    container.addEventListener('touchmove',   onTouchMove,   { passive: false });
+    container.addEventListener('touchend',    onTouchEnd,    { passive: false });
+    container.addEventListener('touchcancel', onTouchEnd,    { passive: false });
+    canvas.setAttribute('role', 'img');
+    canvas.setAttribute('aria-label', `${COLS}×${ROWS} OLED pixel canvas`);
+    document.getElementById('s-dims').textContent = `${COLS}×${ROWS}`;
+    handleResize();
+    saveState();
+    requestAnimationFrame(render);
+}
+
+// ════════════════════════════════════════════════════
+//  TOOLS
+// ════════════════════════════════════════════════════
+function setTool(tool) {
+    if (currentTool === 'select' && tool !== 'select') cancelSelection();
+    currentTool = tool;
+    document.querySelectorAll('.tool-btn').forEach(b => {
+        b.classList.remove('active');
+        b.setAttribute('aria-pressed', 'false');
+    });
+    const btn = document.getElementById('tool-' + tool);
+    if (btn) {
+        btn.classList.add('active');
+        btn.setAttribute('aria-pressed', 'true');
+    }
+    document.getElementById('s-tool').textContent = tool.toUpperCase().replace(/-/g,' ');
+    container.style.cursor = 'crosshair';
+}
+
+function setBrush(size) {
+    brushSize = Math.max(1, Math.min(64, parseInt(size)||1));
+    document.querySelectorAll('.bsz-btn').forEach(b => b.classList.remove('active'));
+    [1,2,3].forEach(s => { if(s===brushSize) document.getElementById('bsz-'+s)?.classList.add('active'); });
+    document.getElementById('brush-custom-input').value = brushSize;
+    document.getElementById('s-brush').textContent = ' ' + brushSize + 'px';
+}
+function setBrushCustom(val){ setBrush(parseInt(val)||1); }
+
+// ════════════════════════════════════════════════════
+//  HISTORY
+// ════════════════════════════════════════════════════
+function saveState() {
+    const last = undoStack[undoStack.length-1];
+    if (last && arraysEqual(last, pixels)) return;
+    undoStack.push(new Uint8Array(pixels));
+    if (undoStack.length > MAX_HISTORY) undoStack.shift();
+    redoStack = [];
+    document.getElementById('history-label').textContent = (undoStack.length-1) + ' steps';
+    updateStatusPixels();
+}
+function arraysEqual(a,b){ if(a.length!==b.length) return false; for(let i=0;i<a.length;i++) if(a[i]!==b[i]) return false; return true; }
+function undo() {
+    if (undoStack.length > 1) {
+        redoStack.push(undoStack.pop());
+        pixels = new Uint8Array(undoStack[undoStack.length-1]);
+        cancelSelection(); updateHistoryUI(); showToast('Undo');
+    }
+}
+function redo() {
+    if (redoStack.length > 0) {
+        const state = redoStack.pop();
+        pixels = new Uint8Array(state);
+        undoStack.push(state);
+        cancelSelection(); updateHistoryUI(); showToast('Redo');
+    }
+}
+function updateHistoryUI(){
+    document.getElementById('history-label').textContent = (undoStack.length-1)+' steps';
+    updateStatusPixels();
+}
+
+// ════════════════════════════════════════════════════
+//  MOUSE — coordinate helpers
+// ════════════════════════════════════════════════════
+function getPixelCoord(cx, cy) {
+    const r = canvas.getBoundingClientRect();
+    return { x: Math.floor((cx - r.left - offsetX) / scale),
+             y: Math.floor((cy - r.top  - offsetY) / scale) };
+}
+
+// ════════════════════════════════════════════════════
+//  RESIZE HANDLE HIT-TEST
+// ════════════════════════════════════════════════════
+const HANDLE_CURSORS = {
+    nw:'nw-resize', n:'n-resize', ne:'ne-resize', e:'e-resize',
+    se:'se-resize', s:'s-resize', sw:'sw-resize', w:'w-resize'
+};
+
+function getHandlePositions() {
+    const sx = offsetX + selection.x * scale;
+    const sy = offsetY + selection.y * scale;
+    const sw = selection.w * scale;
+    const sh = selection.h * scale;
+    return {
+        nw:[sx,      sy      ], n:[sx+sw/2, sy      ], ne:[sx+sw,   sy      ],
+        e: [sx+sw,   sy+sh/2 ],
+        se:[sx+sw,   sy+sh   ], s:[sx+sw/2, sy+sh   ], sw:[sx,      sy+sh   ],
+        w: [sx,      sy+sh/2 ]
+    };
+}
+
+function hitTestHandle(clientX, clientY) {
+    if (!selection.active) return null;
+    const r = canvas.getBoundingClientRect();
+    const cx = clientX - r.left, cy = clientY - r.top;
+    const HIT = Math.max(8, Math.min(12, scale * 1.5));
+    const handles = getHandlePositions();
+    for (const [name, [hx, hy]] of Object.entries(handles)) {
+        if (Math.hypot(cx-hx, cy-hy) <= HIT) return name;
+    }
+    return null;
+}
+
+// ════════════════════════════════════════════════════
+//  MOUSE DOWN
+// ════════════════════════════════════════════════════
+function onMouseDown(e) {
+    const coord = getPixelCoord(e.clientX, e.clientY);
+    if (e.button === 1 || (e.ctrlKey && e.button === 0)) {
+        e.preventDefault();
+        isPanning = true;
+        dragStartScr = { x: e.clientX, y: e.clientY };
+        return;
+    }
+    if (e.button !== 0) return;
+
+    if (currentTool === 'select') {
+        const handle = hitTestHandle(e.clientX, e.clientY);
+        if (handle && selection.active) {
+            isResizingSelection = true;
+            resizeHandle = handle;
+            resizeDragScr = { x: e.clientX, y: e.clientY };
+            resizeOrig = {
+                x: selection.x, y: selection.y,
+                w: selection.w, h: selection.h,
+                buf: liftSelectionPixels(true)
             };
-            reader.readAsText(file);
+            _setSelBuffer(new Uint8Array(resizeOrig.buf), selection.w, selection.h);
+            return;
+        }
+        if (selection.active &&
+            coord.x >= selection.x && coord.x < selection.x + selection.w &&
+            coord.y >= selection.y && coord.y < selection.y + selection.h) {
+            startMovingSelection(e.altKey);
+            dragStartPx = coord;
+            return;
+        }
+        cancelSelection();
+        isSelecting = true;
+        marqueeStart = coord;
+        selection = { x: coord.x, y: coord.y, w: 0, h: 0, active: false };
+        return;
+    }
+
+    if (currentTool === 'pencil') {
+        if (isValid(coord.x, coord.y)) {
+            isDrawing = true;
+            drawMode = pixels[coord.y*COLS+coord.x] === 1 ? 0 : 1;
+            paintBrush(coord.x, coord.y, drawMode);
+            dragStartPx = coord;
+        }
+    } else if (currentTool === 'eraser') {
+        if (isValid(coord.x, coord.y)) {
+            isDrawing = true;
+            paintBrush(coord.x, coord.y, 0);
+            dragStartPx = coord;
+        }
+    } else if (currentTool === 'fill') {
+        if (isValid(coord.x, coord.y)) {
+            const target = pixels[coord.y*COLS+coord.x];
+            floodFill(coord.x, coord.y, target, target===1?0:1);
+            saveState();
+        }
+    } else if (SHAPE_TOOLS.includes(currentTool)) {
+        isShaping = true;
+        shapeStart = { x: clamp(coord.x, 0, COLS-1), y: clamp(coord.y, 0, ROWS-1) };
+        shapeEnd   = shapeStart;
+    }
+}
+
+// ════════════════════════════════════════════════════
+//  MOUSE MOVE
+// ════════════════════════════════════════════════════
+function onMouseMove(e) {
+    const coord = getPixelCoord(e.clientX, e.clientY);
+    cursorPx = coord;
+    if (isValid(coord.x, coord.y))
+        document.getElementById('s-pos').textContent = ' ' + coord.x + ',' + coord.y;
+
+    if (currentTool === 'select' && selection.active && !isMovingSelection && !isSelecting && !isResizingSelection) {
+        const h = hitTestHandle(e.clientX, e.clientY);
+        container.style.cursor = h ? HANDLE_CURSORS[h] : 'crosshair';
+    }
+
+    if (isPanning) {
+        offsetX += e.clientX - dragStartScr.x;
+        offsetY += e.clientY - dragStartScr.y;
+        dragStartScr = { x: e.clientX, y: e.clientY };
+        updateZoomUI(); return;
+    }
+
+    if (isDrawing) {
+        if (isValid(coord.x, coord.y)) {
+            bresenhamBrush(dragStartPx.x, dragStartPx.y, coord.x, coord.y,
+                currentTool==='eraser' ? 0 : drawMode);
+            dragStartPx = coord;
+        }
+    }
+
+    if (isShaping) { shapeEnd = coord; }
+
+    if (isSelecting) {
+        const x1=clamp(marqueeStart.x,0,COLS-1), y1=clamp(marqueeStart.y,0,ROWS-1);
+        const x2=clamp(coord.x,0,COLS-1),        y2=clamp(coord.y,0,ROWS-1);
+        selection.x = Math.min(x1,x2); selection.y = Math.min(y1,y2);
+        selection.w = Math.abs(x1-x2)+1; selection.h = Math.abs(y1-y2)+1;
+        selection.active = true;
+    }
+
+    if (isMovingSelection) {
+        const dx = coord.x - dragStartPx.x, dy = coord.y - dragStartPx.y;
+        if (dx||dy) { selection.x+=dx; selection.y+=dy; dragStartPx = coord; }
+    }
+
+    if (isResizingSelection && resizeOrig) {
+        const dxScr = e.clientX - resizeDragScr.x;
+        const dyScr = e.clientY - resizeDragScr.y;
+        const dxPx = Math.round(dxScr / scale);
+        const dyPx = Math.round(dyScr / scale);
+
+        let { x, y, w, h } = resizeOrig;
+        const h_name = resizeHandle;
+
+        if (h_name.includes('e')) w = Math.max(1, resizeOrig.w + dxPx);
+        if (h_name.includes('s')) h = Math.max(1, resizeOrig.h + dyPx);
+        if (h_name.includes('w')) { x = resizeOrig.x + dxPx; w = Math.max(1, resizeOrig.w - dxPx); }
+        if (h_name.includes('n')) { y = resizeOrig.y + dyPx; h = Math.max(1, resizeOrig.h - dyPx); }
+
+        if (x < 0) { w += x; x = 0; }
+        if (y < 0) { h += y; y = 0; }
+        if (x + w > COLS) w = COLS - x;
+        if (y + h > ROWS) h = ROWS - y;
+        w = Math.max(1, w); h = Math.max(1, h);
+
+        selection.x = x; selection.y = y;
+        selection.w = w; selection.h = h;
+        _setSelBuffer(scaleBuffer(resizeOrig.buf, resizeOrig.w, resizeOrig.h, w, h), w, h);
+    }
+
+    updateStatusSelection();
+}
+
+// ════════════════════════════════════════════════════
+//  MOUSE UP
+// ════════════════════════════════════════════════════
+function onMouseUp() {
+    if (isDrawing) saveState();
+
+    if (isShaping) {
+        commitShape(currentTool, shapeStart, shapeEnd);
+        saveState();
+    }
+
+    if (isMovingSelection) { commitSelection(); saveState(); }
+
+    if (isResizingSelection) {
+        commitSelection();
+        saveState();
+        isResizingSelection = false;
+        resizeHandle = null;
+        resizeOrig   = null;
+        container.style.cursor = 'crosshair';
+    }
+
+    isDrawing = false; isPanning = false; isSelecting = false;
+    isMovingSelection = false; isShaping = false;
+}
+
+// ════════════════════════════════════════════════════
+//  KEYBOARD
+// ════════════════════════════════════════════════════
+function onKeyDown(e) {
+    if (e.key === 'Shift') { shiftDown = true; return; }
+    if (e.target.matches('input, select')) return;
+    const key = e.key.toLowerCase(), ctrl = e.ctrlKey||e.metaKey;
+    if (!ctrl) {
+        if (key==='p') setTool('pencil');
+        if (key==='e') setTool('eraser');
+        if (key==='f') setTool('fill');
+        if (key==='l') setTool('line');
+        if (key==='r') setTool('rect');
+        if (key==='c') setTool('circle');
+        if (key==='t') setTool('triangle');
+        if (key==='d') setTool('diamond');
+        if (key==='s') setTool('select');
+    }
+    if (ctrl&&key==='z'){ e.preventDefault(); undo(); }
+    if (ctrl&&(key==='y'||(e.shiftKey&&key==='z'))){ e.preventDefault(); redo(); }
+    if (key==='escape') cancelSelection();
+    if (key==='delete'||key==='backspace') deleteSelection();
+    if (ctrl&&key==='c'){ e.preventDefault(); copySelection(); }
+    if (ctrl&&key==='x'){ e.preventDefault(); cutSelection(); }
+    if (ctrl&&key==='v'){ e.preventDefault(); pasteClipboard(); }
+    if (selection.active && ['arrowup','arrowdown','arrowleft','arrowright'].includes(key)) {
+        e.preventDefault();
+        const amt = e.shiftKey ? 8 : 1;
+        startMovingSelection();
+        if (key==='arrowup')    selection.y -= amt;
+        if (key==='arrowdown')  selection.y += amt;
+        if (key==='arrowleft')  selection.x -= amt;
+        if (key==='arrowright') selection.x += amt;
+        commitSelection();
+        isMovingSelection = false;
+        saveState();
+    }
+}
+
+// ════════════════════════════════════════════════════
+//  DRAWING PRIMITIVES
+// ════════════════════════════════════════════════════
+function paintBrush(x, y, val) {
+    if (brushSize===1){ togglePixel(x,y,val); return; }
+    const half = Math.floor(brushSize/2);
+    for (let dy=-half;dy<=half;dy++)
+        for (let dx=-half;dx<=half;dx++)
+            if (dx*dx+dy*dy <= half*half+half*0.6) togglePixel(x+dx,y+dy,val);
+}
+
+function bresenhamBrush(x0,y0,x1,y1,val) {
+    const dx=Math.abs(x1-x0),dy=Math.abs(y1-y0);
+    const sx=x0<x1?1:-1, sy=y0<y1?1:-1;
+    let err=dx-dy;
+    while(true){
+        paintBrush(x0,y0,val);
+        if(x0===x1&&y0===y1) break;
+        const e2=2*err;
+        if(e2>-dy){err-=dy;x0+=sx;}
+        if(e2<dx) {err+=dx;y0+=sy;}
+    }
+}
+
+function lineTo(x0,y0,x1,y1,val,buf){
+    const put=buf?((x,y)=>{if(isValid(x,y))buf[y*COLS+x]=val;}):((x,y)=>togglePixel(x,y,val));
+    const dx=Math.abs(x1-x0),dy=Math.abs(y1-y0);
+    const sx=x0<x1?1:-1,sy=y0<y1?1:-1; let err=dx-dy;
+    while(true){put(x0,y0);if(x0===x1&&y0===y1)break;const e2=2*err;if(e2>-dy){err-=dy;x0+=sx;}if(e2<dx){err+=dx;y0+=sy;}}
+}
+
+function drawRect(x0,y0,x1,y1,filled,val,buf){
+    const mnX=Math.max(0,Math.min(x0,x1)),mxX=Math.min(COLS-1,Math.max(x0,x1));
+    const mnY=Math.max(0,Math.min(y0,y1)),mxY=Math.min(ROWS-1,Math.max(y0,y1));
+    const put=buf?((x,y)=>{if(isValid(x,y))buf[y*COLS+x]=val;}):((x,y)=>togglePixel(x,y,val));
+    if(filled){for(let y=mnY;y<=mxY;y++)for(let x=mnX;x<=mxX;x++)put(x,y);}
+    else{for(let x=mnX;x<=mxX;x++){put(x,mnY);put(x,mxY);}for(let y=mnY+1;y<mxY;y++){put(mnX,y);put(mxX,y);}}
+}
+
+function drawRoundedRect(x0,y0,x1,y1,val,buf){
+    const mnX=Math.min(x0,x1),mxX=Math.max(x0,x1),mnY=Math.min(y0,y1),mxY=Math.max(y0,y1);
+    const r=Math.max(1,Math.min(Math.floor(Math.min(mxX-mnX,mxY-mnY)/4),6));
+    const put=buf?((x,y)=>{if(isValid(x,y))buf[y*COLS+x]=val;}):((x,y)=>togglePixel(x,y,val));
+    for(let x=mnX+r;x<=mxX-r;x++){put(x,mnY);put(x,mxY);}
+    for(let y=mnY+r;y<=mxY-r;y++){put(mnX,y);put(mxX,y);}
+    const corners=[[mnX+r,mnY+r],[mxX-r,mnY+r],[mxX-r,mxY-r],[mnX+r,mxY-r]];
+    for(const[cx,cy]of corners)
+        for(let dy=-r;dy<=r;dy++)for(let dx=-r;dx<=r;dx++){
+            const d=Math.sqrt(dx*dx+dy*dy);if(d>=r-0.6&&d<=r+0.6)put(cx+dx,cy+dy);
+        }
+}
+
+function drawEllipse(x0,y0,x1,y1,filled,val,buf){
+    const cx=Math.round((x0+x1)/2), cy=Math.round((y0+y1)/2);
+    const rx=Math.round(Math.abs(x1-x0)/2), ry=Math.round(Math.abs(y1-y0)/2);
+    _ellipseCore(cx,cy,rx,ry,filled,val,buf);
+}
+
+function drawCircle(x0,y0,x1,y1,filled,val,buf){
+    const r=Math.min(Math.abs(x1-x0),Math.abs(y1-y0));
+    const cx=x0+(x1>x0?r:-r), cy=y0+(y1>y0?r:-r);
+    _ellipseCore(cx,cy,r,r,filled,val,buf);
+}
+
+function _ellipseCore(cx,cy,rx,ry,filled,val,buf){
+    const put=buf?((x,y)=>{if(isValid(x,y))buf[y*COLS+x]=val;}):((x,y)=>togglePixel(x,y,val));
+    if(filled){
+        for(let y=-ry;y<=ry;y++){
+            const hw=Math.round(rx*Math.sqrt(Math.max(0,1-(y/(ry||1))**2)));
+            for(let x=-hw;x<=hw;x++)put(cx+x,cy+y);
+        }
+    }else{
+        let a2=rx*rx,b2=ry*ry,x=0,y=ry;
+        const p4=(px,py)=>{put(cx+px,cy+py);put(cx-px,cy+py);put(cx+px,cy-py);put(cx-px,cy-py);};
+        let d1=b2-a2*ry+.25*a2,dx=2*b2*x,dy=2*a2*y;
+        while(dx<dy){p4(x,y);if(d1<0){x++;dx+=2*b2;d1+=dx+b2;}else{x++;y--;dx+=2*b2;dy-=2*a2;d1+=dx-dy+b2;}}
+        let d2=b2*(x+.5)**2+a2*(y-1)**2-a2*b2;
+        while(y>=0){p4(x,y);if(d2>0){y--;dy-=2*a2;d2+=a2-dy;}else{y--;x++;dx+=2*b2;dy-=2*a2;d2+=dx-dy+a2;}}
+    }
+}
+
+function drawTriangle(x0,y0,x1,y1,filled,val,buf){
+    const mx=Math.round((x0+x1)/2);
+    const pts=[{x:mx,y:y0},{x:x0,y:y1},{x:x1,y:y1}];
+    if(filled){
+        const put=buf?((x,y)=>{if(isValid(x,y))buf[y*COLS+x]=val;}):((x,y)=>togglePixel(x,y,val));
+        const mnY=Math.max(0,Math.min(...pts.map(p=>p.y)));
+        const mxY=Math.min(ROWS-1,Math.max(...pts.map(p=>p.y)));
+        for(let sy=mnY;sy<=mxY;sy++){
+            let minX=COLS,maxX=-1;
+            for(let i=0;i<3;i++){const p=pts[i],q=pts[(i+1)%3];
+                if((p.y<=sy&&q.y>sy)||(q.y<=sy&&p.y>sy)){const t=(sy-p.y)/(q.y-p.y);const ix=Math.round(p.x+t*(q.x-p.x));minX=Math.min(minX,ix);maxX=Math.max(maxX,ix);}}
+            for(let x=Math.max(0,minX);x<=Math.min(COLS-1,maxX);x++)put(x,sy);
+        }
+    }else{for(let i=0;i<3;i++)lineTo(Math.round(pts[i].x),pts[i].y,Math.round(pts[(i+1)%3].x),pts[(i+1)%3].y,val,buf);}
+}
+
+function drawDiamond(x0,y0,x1,y1,filled,val,buf){
+    const cx=Math.round((x0+x1)/2),cy=Math.round((y0+y1)/2);
+    const rx=Math.abs(x1-x0)/2,ry=Math.abs(y1-y0)/2;
+    const pts=[{x:cx,y:y0},{x:x1,y:cy},{x:cx,y:y1},{x:x0,y:cy}];
+    if(filled){
+        const put=buf?((x,y)=>{if(isValid(x,y))buf[y*COLS+x]=val;}):((x,y)=>togglePixel(x,y,val));
+        const mnY=Math.max(0,Math.round(y0)),mxY=Math.min(ROWS-1,Math.round(y1));
+        for(let sy=mnY;sy<=mxY;sy++){const t=Math.abs(sy-cy)/(ry||1);const hw=Math.round(rx*(1-t));for(let x=Math.max(0,cx-hw);x<=Math.min(COLS-1,cx+hw);x++)put(x,sy);}
+    }else{for(let i=0;i<4;i++)lineTo(Math.round(pts[i].x),Math.round(pts[i].y),Math.round(pts[(i+1)%4].x),Math.round(pts[(i+1)%4].y),val,buf);}
+}
+
+function drawStar(x0,y0,x1,y1,val,buf){
+    const cx=Math.round((x0+x1)/2),cy=Math.round((y0+y1)/2);
+    const outer=Math.max(2,Math.min(Math.abs(x1-x0),Math.abs(y1-y0))/2);
+    const inner=outer*.4, pts=[];
+    for(let i=0;i<10;i++){const r=i%2===0?outer:inner;const a=i*Math.PI/5-Math.PI/2;pts.push({x:Math.round(cx+r*Math.cos(a)),y:Math.round(cy+r*Math.sin(a))});}
+    for(let i=0;i<pts.length;i++)lineTo(pts[i].x,pts[i].y,pts[(i+1)%pts.length].x,pts[(i+1)%pts.length].y,val,buf);
+}
+
+function drawArrow(x0,y0,x1,y1,val,buf){
+    lineTo(x0,y0,x1,y1,val,buf);
+    const angle=Math.atan2(y1-y0,x1-x0);
+    const len=Math.max(4,Math.round(Math.hypot(x1-x0,y1-y0)*.28));
+    lineTo(x1,y1,Math.round(x1+len*Math.cos(angle+2.5)),Math.round(y1+len*Math.sin(angle+2.5)),val,buf);
+    lineTo(x1,y1,Math.round(x1+len*Math.cos(angle-2.5)),Math.round(y1+len*Math.sin(angle-2.5)),val,buf);
+}
+
+function drawCross(x0,y0,x1,y1,val,buf){
+    const cx=Math.round((x0+x1)/2),cy=Math.round((y0+y1)/2);
+    const mnX=Math.max(0,Math.min(x0,x1)),mxX=Math.min(COLS-1,Math.max(x0,x1));
+    const mnY=Math.max(0,Math.min(y0,y1)),mxY=Math.min(ROWS-1,Math.max(y0,y1));
+    const th=Math.max(1,Math.round(Math.min(mxX-mnX,mxY-mnY)*.15));
+    const put=buf?((x,y)=>{if(isValid(x,y))buf[y*COLS+x]=val;}):((x,y)=>togglePixel(x,y,val));
+    for(let y=mnY;y<=mxY;y++)for(let x=cx-th;x<=cx+th;x++)put(x,y);
+    for(let x=mnX;x<=mxX;x++)for(let y=cy-th;y<=cy+th;y++)put(x,y);
+}
+
+function dilateBuffer(src){
+    if(brushSize<=1) return src;
+    const dst=new Uint8Array(COLS*ROWS);
+    const half=Math.floor(brushSize/2);
+    const r2=half*half+half*.6;
+    for(let y=0;y<ROWS;y++)for(let x=0;x<COLS;x++){
+        if(!src[y*COLS+x]) continue;
+        for(let dy=-half;dy<=half;dy++)for(let dx=-half;dx<=half;dx++){
+            if(dx*dx+dy*dy<=r2){const nx=x+dx,ny=y+dy;if(isValid(nx,ny))dst[ny*COLS+nx]=1;}
+        }
+    }
+    return dst;
+}
+
+function scaleBuffer(srcBuf, srcW, srcH, dstW, dstH) {
+    const dst = new Uint8Array(dstW * dstH);
+    for (let y=0; y<dstH; y++) for (let x=0; x<dstW; x++) {
+        const sx = Math.floor(x * srcW / dstW);
+        const sy = Math.floor(y * srcH / dstH);
+        dst[y*dstW+x] = srcBuf[sy*srcW+sx];
+    }
+    return dst;
+}
+
+const SHAPE_FN_MAP = {
+    'line':          (x0,y0,x1,y1,v,b) => lineTo(x0,y0,x1,y1,v,b),
+    'rect':          (x0,y0,x1,y1,v,b) => drawRect(x0,y0,x1,y1,false,v,b),
+    'rect-fill':     (x0,y0,x1,y1,v,b) => drawRect(x0,y0,x1,y1,true,v,b),
+    'ellipse':       (x0,y0,x1,y1,v,b) => drawEllipse(x0,y0,x1,y1,false,v,b),
+    'ellipse-fill':  (x0,y0,x1,y1,v,b) => drawEllipse(x0,y0,x1,y1,true,v,b),
+    'circle':        (x0,y0,x1,y1,v,b) => drawCircle(x0,y0,x1,y1,false,v,b),
+    'circle-fill':   (x0,y0,x1,y1,v,b) => drawCircle(x0,y0,x1,y1,true,v,b),
+    'triangle':      (x0,y0,x1,y1,v,b) => drawTriangle(x0,y0,x1,y1,false,v,b),
+    'triangle-fill': (x0,y0,x1,y1,v,b) => drawTriangle(x0,y0,x1,y1,true,v,b),
+    'diamond':       (x0,y0,x1,y1,v,b) => drawDiamond(x0,y0,x1,y1,false,v,b),
+    'diamond-fill':  (x0,y0,x1,y1,v,b) => drawDiamond(x0,y0,x1,y1,true,v,b),
+    'star':          (x0,y0,x1,y1,v,b) => drawStar(x0,y0,x1,y1,v,b),
+    'arrow':         (x0,y0,x1,y1,v,b) => drawArrow(x0,y0,x1,y1,v,b),
+    'rounded-rect':  (x0,y0,x1,y1,v,b) => drawRoundedRect(x0,y0,x1,y1,v,b),
+    'cross':         (x0,y0,x1,y1,v,b) => drawCross(x0,y0,x1,y1,v,b),
+};
+
+function getShapeFn(tool) { return SHAPE_FN_MAP[tool] || null; }
+
+function getConstrainedEnd(start, end, tool) {
+    if (shiftDown && (tool==='ellipse'||tool==='ellipse-fill')) {
+        const dx=end.x-start.x, dy=end.y-start.y;
+        const r=Math.min(Math.abs(dx),Math.abs(dy));
+        return { x: start.x+(dx>=0?r:-r), y: start.y+(dy>=0?r:-r) };
+    }
+    return end;
+}
+
+function commitShape(tool, s, e) {
+    const ce = getConstrainedEnd(s, e, tool);
+    const buf = new Uint8Array(COLS*ROWS);
+    const fn = getShapeFn(tool);
+    if (!fn) return;
+    fn(s.x, s.y, ce.x, ce.y, 1, buf);
+    const final = dilateBuffer(buf);
+    for (let i=0; i<final.length; i++) if (final[i]) pixels[i]=1;
+}
+
+let _previewCache = { key: null, buf: null };
+
+function getShapePreview(tool, s, e) {
+    const ce = getConstrainedEnd(s, e, tool);
+    const key = `${tool}|${s.x},${s.y}|${ce.x},${ce.y}|${brushSize}|${shiftDown}`;
+    if (_previewCache.key === key) return _previewCache.buf;
+    const buf = new Uint8Array(COLS*ROWS);
+    const fn = getShapeFn(tool);
+    if (fn) fn(s.x, s.y, ce.x, ce.y, 1, buf);
+    const result = dilateBuffer(buf);
+    _previewCache = { key, buf: result };
+    return result;
+}
+
+// ════════════════════════════════════════════════════
+//  FLOOD FILL
+// ════════════════════════════════════════════════════
+function floodFill(sx,sy,target,fillVal){
+    if(target===fillVal) return;
+    const stack=[[sx,sy]], visited=new Uint8Array(COLS*ROWS);
+    while(stack.length){
+        const[x,y]=stack.pop();
+        if(!isValid(x,y)||visited[y*COLS+x]||pixels[y*COLS+x]!==target) continue;
+        visited[y*COLS+x]=1; pixels[y*COLS+x]=fillVal;
+        stack.push([x+1,y],[x-1,y],[x,y+1],[x,y-1]);
+    }
+}
+
+// ════════════════════════════════════════════════════
+//  SELECTION
+// ════════════════════════════════════════════════════
+function liftSelectionPixels(erase) {
+    const buf = new Uint8Array(selection.w * selection.h);
+    for (let j=0; j<selection.h; j++) for (let i=0; i<selection.w; i++) {
+        const sx=selection.x+i, sy=selection.y+j;
+        if (isValid(sx,sy)) {
+            buf[j*selection.w+i] = pixels[sy*COLS+sx];
+            if (erase && pixels[sy*COLS+sx]===1) pixels[sy*COLS+sx]=0;
+        }
+    }
+    return buf;
+}
+
+function _setSelBuffer(buf, w, h) {
+    selectionBuffer = buf;
+    selBufferW = w;
+    selBufferH = h;
+}
+
+function _clearSelBuffer() {
+    selectionBuffer = null;
+    selBufferW = 0;
+    selBufferH = 0;
+}
+
+function startMovingSelection(duplicate=false) {
+    if (!selection.active||isMovingSelection) return;
+    isMovingSelection = true;
+    _setSelBuffer(liftSelectionPixels(!duplicate), selection.w, selection.h);
+}
+
+function commitSelection() {
+    if (!selection.active||!selectionBuffer) return;
+    // Use explicit buffer dims — they differ from selection.w/h when buffer was scaled during resize
+    const bw = selBufferW || selection.w;
+    const bh = selBufferH || selection.h;
+    for (let j=0; j<bh; j++) for (let i=0; i<bw; i++) {
+        const tx=selection.x+i, ty=selection.y+j;
+        if (isValid(tx,ty) && selectionBuffer[j*bw+i]===1)
+            pixels[ty*COLS+tx]=1;
+    }
+    _clearSelBuffer();
+}
+
+function cancelSelection() {
+    if (isMovingSelection||isResizingSelection) commitSelection();
+    selection.active=false;
+    isMovingSelection=false; isResizingSelection=false;
+    resizeHandle=null; resizeOrig=null;
+    _clearSelBuffer();
+    updateStatusSelection();
+}
+
+function deleteSelection() {
+    if (!selection.active) return;
+    if (selectionBuffer) {
+        // Pixels already lifted off canvas — just discard the float, don't erase canvas
+        _clearSelBuffer();
+    } else {
+        // Pixels still on canvas — erase them
+        for (let j=0; j<selection.h; j++) for (let i=0; i<selection.w; i++) {
+            const tx=selection.x+i, ty=selection.y+j;
+            if (isValid(tx,ty)) pixels[ty*COLS+tx] = 0;
+        }
+    }
+    isMovingSelection = false;
+    isResizingSelection = false;
+    resizeHandle = null;
+    resizeOrig = null;
+    selection.active = false;
+    updateStatusSelection();
+    saveState();
+}
+
+function cropToSelection() {
+    if (!selection.active) return;
+    const x0=selection.x, y0=selection.y, x1=x0+selection.w, y1=y0+selection.h;
+    for (let y=0;y<ROWS;y++) for (let x=0;x<COLS;x++)
+        if (x<x0||x>=x1||y<y0||y>=y1) pixels[y*COLS+x]=0;
+    cancelSelection(); saveState(); showToast('Cropped to selection');
+}
+
+function copySelection() {
+    if (!selection.active) return;
+    clipboard = { w:selection.w, h:selection.h, data: liftSelectionPixels(false) };
+    showToast('Copied '+selection.w+'×'+selection.h);
+}
+
+function cutSelection() { copySelection(); deleteSelection(); }
+
+function pasteClipboard() {
+    if (!clipboard) return;
+    cancelSelection();
+    selection={x:2,y:2,w:clipboard.w,h:clipboard.h,active:true};
+    _setSelBuffer(new Uint8Array(clipboard.data), clipboard.w, clipboard.h);
+    isMovingSelection = true;
+    setTool('select');
+    showToast('Pasted — drag to position');
+    // Note: saveState called on mouseUp after user drops the paste
+}
+
+// ════════════════════════════════════════════════════
+//  TRANSFORMS
+// ════════════════════════════════════════════════════
+function doInvert() {
+    if (selection.active) {
+        const buf = liftSelectionPixels(true);
+        for (let i=0;i<buf.length;i++) buf[i]=buf[i]?0:1;
+        _setSelBuffer(buf, selection.w, selection.h); commitSelection(); saveState(); showToast('Selection inverted');
+    } else {
+        for(let i=0;i<pixels.length;i++) pixels[i]=pixels[i]?0:1;
+        saveState(); showToast('Inverted');
+    }
+}
+
+function doFlipH() {
+    if (selection.active) {
+        const buf=liftSelectionPixels(true);
+        const w=selection.w,h=selection.h;
+        const dst=new Uint8Array(w*h);
+        for(let y=0;y<h;y++) for(let x=0;x<w;x++) dst[y*w+x]=buf[y*w+(w-1-x)];
+        _setSelBuffer(dst, selection.w, selection.h); commitSelection(); saveState(); showToast('Selection flipped H');
+    } else {
+        const c=new Uint8Array(pixels);
+        for(let y=0;y<ROWS;y++) for(let x=0;x<COLS;x++) pixels[y*COLS+x]=c[y*COLS+(COLS-1-x)];
+        saveState(); showToast('Flipped H');
+    }
+}
+
+function doFlipV() {
+    if (selection.active) {
+        const buf=liftSelectionPixels(true);
+        const w=selection.w,h=selection.h;
+        const dst=new Uint8Array(w*h);
+        for(let y=0;y<h;y++) for(let x=0;x<w;x++) dst[y*w+x]=buf[(h-1-y)*w+x];
+        _setSelBuffer(dst, selection.w, selection.h); commitSelection(); saveState(); showToast('Selection flipped V');
+    } else {
+        const c=new Uint8Array(pixels);
+        for(let y=0;y<ROWS;y++) for(let x=0;x<COLS;x++) pixels[y*COLS+x]=c[(ROWS-1-y)*COLS+x];
+        saveState(); showToast('Flipped V');
+    }
+}
+
+function doRotate90() {
+    if (selection.active) {
+        const buf=liftSelectionPixels(true);
+        const w=selection.w,h=selection.h;
+        const dst=new Uint8Array(h*w);
+        for(let y=0;y<h;y++) for(let x=0;x<w;x++) dst[x*h+(h-1-y)]=buf[y*w+x];
+        const cx=selection.x+Math.floor(w/2), cy=selection.y+Math.floor(h/2);
+        selection.w=h; selection.h=w;
+        selection.x=cx-Math.floor(h/2); selection.y=cy-Math.floor(w/2);
+        selection.x=clamp(selection.x,0,COLS-selection.w);
+        selection.y=clamp(selection.y,0,ROWS-selection.h);
+        _setSelBuffer(dst, selection.w, selection.h); commitSelection(); saveState(); showToast('Selection rotated 90°');
+    } else {
+        const oldCols = COLS, oldRows = ROWS;
+        const c = new Uint8Array(pixels);
+        const newCols = oldRows, newRows = oldCols;
+        const rotated = new Uint8Array(newCols * newRows);
+        for (let y=0; y<oldRows; y++) for (let x=0; x<oldCols; x++) {
+            const nx = oldRows - 1 - y;
+            const ny = x;
+            rotated[ny * newCols + nx] = c[y * oldCols + x];
+        }
+        COLS = newCols;
+        ROWS = newRows;
+        pixels = rotated;
+        canvas.setAttribute('aria-label', `${COLS}×${ROWS} OLED pixel canvas`);
+        document.getElementById('s-dims').textContent = `${COLS}×${ROWS}`;
+        syncResSelect();
+        fitToScreen();
+        saveState(); showToast('Rotated 90°');
+    }
+}
+
+// ════════════════════════════════════════════════════
+//  EXPORT / IMPORT
+// ════════════════════════════════════════════════════
+function exportPNG() {
+    const t=document.createElement('canvas'); t.width=COLS; t.height=ROWS;
+    const tCtx=t.getContext('2d'), img=tCtx.createImageData(COLS,ROWS);
+    for(let i=0;i<pixels.length;i++){const v=pixels[i]?255:0,idx=i*4;img.data[idx]=v;img.data[idx+1]=v;img.data[idx+2]=v;img.data[idx+3]=255;}
+    tCtx.putImageData(img,0,0); dlLink('oled_art.png',t.toDataURL()); showToast('PNG exported');
+}
+
+function exportCSV(){
+    let csv='';
+    for(let y=0;y<ROWS;y++){
+        const row=[];
+        for(let x=0;x<COLS;x++) row.push(pixels[y*COLS+x]);
+        csv+=row.join(',')+'\n';
+    }
+    dlBlob(csv,'oled.csv','text/csv'); showToast('CSV exported');
+}
+
+function exportCArray(){
+    const bytesPerRow = Math.ceil(COLS / 8);
+    let out=`// OLED bitmap ${COLS}x${ROWS}\nconst uint8_t bitmap[${ROWS * bytesPerRow}] PROGMEM = {\n`;
+    const lines=[];
+    for(let y=0;y<ROWS;y++){
+        const row=[];
+        for(let x=0;x<bytesPerRow*8;x+=8){
+            let byte=0;
+            for(let b=0;b<8;b++) if(isValid(x+b,y)&&pixels[y*COLS+(x+b)]) byte|=(0x80>>b);
+            row.push('0x'+byte.toString(16).padStart(2,'0').toUpperCase());
+        }
+        lines.push('  '+row.join(', '));
+    }
+    out+=lines.join(',\n')+'\n};\n';
+    dlBlob(out,'oled_bitmap.h','text/plain'); showToast('C Array exported');
+}
+
+function exportArduinoSketch(){
+    const bytesPerRow = Math.ceil(COLS / 8);
+    let bitmapLines = [];
+    for(let y=0;y<ROWS;y++){
+        const row=[];
+        for(let x=0;x<bytesPerRow*8;x+=8){
+            let byte=0;
+            for(let b=0;b<8;b++) if(isValid(x+b,y)&&pixels[y*COLS+(x+b)]) byte|=(0x80>>b);
+            row.push('0x'+byte.toString(16).padStart(2,'0').toUpperCase());
+        }
+        bitmapLines.push('  '+row.join(', '));
+    }
+    const bitmap = `const unsigned char myBitmap[] PROGMEM = {\n${bitmapLines.join(',\n')}\n};`;
+    const sketch =
+`#include <Wire.h>
+#include <Adafruit_GFX.h>
+#include <Adafruit_SSD1306.h>
+
+#define SCREEN_WIDTH ${COLS}
+#define SCREEN_HEIGHT ${ROWS}
+#define OLED_RESET -1
+#define SCREEN_ADDRESS 0x3C
+
+Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
+
+${bitmap}
+
+void setup() {
+    Wire.begin(); // Uses board default I2C pins; use Wire.begin(SDA, SCL) if custom pins are required
+
+  if (!display.begin(SSD1306_SWITCHCAPVCC, SCREEN_ADDRESS)) {
+    while (1);
+  }
+
+  display.clearDisplay();
+
+  // drawBitmap(x, y, data, width, height, color)
+  display.drawBitmap(0, 0, myBitmap, ${COLS}, ${ROWS}, SSD1306_WHITE);
+
+  display.display();
+}
+
+void loop() {
+}
+`;
+    dlBlob(sketch, `oled_${COLS}x${ROWS}.ino`, 'text/plain');
+    showToast('Arduino sketch exported');
+}
+
+function dlBlob(content, filename, mimeType) {
+    const blob = new Blob([content], { type: mimeType });
+    const url  = URL.createObjectURL(blob);
+    const a    = document.createElement('a');
+    a.download = filename;
+    a.href     = url;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(() => URL.revokeObjectURL(url), 100);
+}
+
+function dlLink(filename, dataUrl) {
+    const a = document.createElement('a');
+    a.download = filename;
+    a.href     = dataUrl;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+}
+
+function triggerImport(){ document.getElementById('import-input').click(); }
+
+function handleImport(e){
+    const file=e.target.files[0]; if(!file) return;
+    const r=new FileReader();
+    r.onload=ev=>{
+        const rawRows = ev.target.result.trim().split('\n').filter(l => l.trim() !== '');
+        const detectedRows = rawRows.length;
+        const detectedCols = rawRows[0] ? rawRows[0].split(',').length : COLS;
+
+        if (detectedCols !== COLS || detectedRows !== ROWS) {
+            const newW = Math.max(1, Math.min(1024, detectedCols));
+            const newH = Math.max(1, Math.min(1024, detectedRows));
+            COLS = newW; ROWS = newH;
+            pixels = new Uint8Array(COLS * ROWS);
+            undoStack = []; redoStack = [];
+            cancelSelection();
+            document.getElementById('s-dims').textContent = `${COLS}×${ROWS}`;
+            canvas.setAttribute('aria-label', `${COLS}×${ROWS} OLED pixel canvas`);
+            fitToScreen();
+            syncResSelect();
         }
 
-        // --- Render ---
+        const np = new Uint8Array(COLS * ROWS);
+        rawRows.forEach((rowStr, y) => {
+            if (y >= ROWS) return;
+            rowStr.split(',').forEach((v, x) => { if (x < COLS) np[y*COLS+x] = parseInt(v, 10) ? 1 : 0; });
+        });
+        pixels = np;
+        saveState();
+        showToast(`Imported ${COLS}×${ROWS}`);
+    };
+    r.readAsText(file);
+    e.target.value = '';
+}
 
-        function render() {
-            // Background clearing
-            ctx.fillStyle = '#0a0a0c';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
+// ════════════════════════════════════════════════════
+//  RESOLUTION
+// ════════════════════════════════════════════════════
+function changeResolution(newW, newH) {
+    newW = Math.max(1, Math.min(1024, Math.round(newW)));
+    newH = Math.max(1, Math.min(1024, Math.round(newH)));
+    if (newW === COLS && newH === ROWS) return;
 
-            // Workspace background
-            ctx.fillStyle = '#121214';
-            ctx.fillRect(offsetX, offsetY, COLS * scale, ROWS * scale);
-
-            // DRAW GRID & PIXELS
-            const drawGrid = scale >= 3;
-            const gap = scale > 5 ? 1 : 0; // Create tile gap at high zoom
-
-            // Optimization: Only draw pixels and grid within the viewable area
-            for (let y = 0; y < ROWS; y++) {
-                for (let x = 0; x < COLS; x++) {
-                    const px = offsetX + x * scale;
-                    const py = offsetY + y * scale;
-
-                    // Draw Pixel Cell (The "OFF" state grid)
-                    if (drawGrid) {
-                        ctx.fillStyle = '#1e1e22';
-                        ctx.fillRect(px + gap, py + gap, scale - gap * 2, scale - gap * 2);
-                    }
-
-                    // Draw "ON" state
-                    if (pixels[y * COLS + x] === 1) {
-                        ctx.fillStyle = '#ffffff';
-                        ctx.fillRect(px + gap, py + gap, scale - gap * 2, scale - gap * 2);
-                        
-                        // Add a tiny highlight/glow effect to ON pixels at high zoom
-                        if (scale > 10) {
-                            ctx.fillStyle = 'rgba(255,255,255,0.1)';
-                            ctx.fillRect(px + gap, py + gap, scale - gap * 2, (scale - gap * 2) / 3);
-                        }
-                    }
-                }
-            }
-
-            // Selection Preview (Floating layer)
-            if (isMovingSelection && selectionBuffer) {
-                ctx.fillStyle = 'rgba(255, 255, 255, 0.4)';
-                for (let j = 0; j < selection.h; j++) {
-                    for (let i = 0; i < selection.w; i++) {
-                        if (selectionBuffer[j * selection.w + i] === 1) {
-                            ctx.fillRect(offsetX + (selection.x + i) * scale + gap, offsetY + (selection.y + j) * scale + gap, scale - gap * 2, scale - gap * 2);
-                        }
-                    }
-                }
-            }
-
-            // Selection Bounds Marquee
-            if (selection.active) {
-                const time = Date.now() / 100;
-                ctx.strokeStyle = '#3b82f6';
-                ctx.lineWidth = 2;
-                ctx.setLineDash([5, 5]);
-                ctx.lineDashOffset = -time % 10;
-                ctx.strokeRect(offsetX + selection.x * scale - 1, offsetY + selection.y * scale - 1, selection.w * scale + 2, selection.h * scale + 2);
-                ctx.setLineDash([]);
-                
-                // Outer glow for selection
-                ctx.strokeStyle = 'rgba(59, 130, 246, 0.3)';
-                ctx.lineWidth = 4;
-                ctx.strokeRect(offsetX + selection.x * scale - 2, offsetY + selection.y * scale - 2, selection.w * scale + 4, selection.h * scale + 4);
-            }
-
-            // Outer Canvas Boundary
-            ctx.strokeStyle = 'rgba(255,255,255,0.1)';
-            ctx.lineWidth = 1;
-            ctx.strokeRect(offsetX - 1, offsetY - 1, COLS * scale + 2, ROWS * scale + 2);
-
-            requestAnimationFrame(render);
+    const hasContent = pixels.some(p => p === 1);
+    if (hasContent) {
+        if (!confirm(`Change canvas to ${newW}×${newH}?\n\nThe current artwork will be cleared.`)) {
+            syncResSelect();
+            return;
         }
+    }
 
-        init();
-    </script>
+    cancelSelection();
+    COLS = newW;
+    ROWS = newH;
+    pixels = new Uint8Array(COLS * ROWS);
+    undoStack = [];
+    redoStack = [];
+    document.getElementById('s-dims').textContent = `${COLS}×${ROWS}`;
+    canvas.setAttribute('aria-label', `${COLS}×${ROWS} OLED pixel canvas`);
+    fitToScreen();
+    saveState();
+    showToast(`Canvas: ${COLS}×${ROWS}`);
+}
+
+function syncResSelect() {
+    const sel = document.getElementById('res-select');
+    const key = `${COLS}x${ROWS}`;
+    const matchingOpt = Array.from(sel.options).find(o => o.value === key);
+    if (matchingOpt) {
+        sel.value = key;
+        document.getElementById('res-custom-row').classList.remove('visible');
+    } else {
+        sel.value = 'custom';
+        document.getElementById('res-w').value = COLS;
+        document.getElementById('res-h').value = ROWS;
+        document.getElementById('res-custom-row').classList.add('visible');
+    }
+}
+
+function onResSelect() {
+    const sel = document.getElementById('res-select');
+    const val = sel.value;
+    if (val === 'custom') {
+        document.getElementById('res-w').value = COLS;
+        document.getElementById('res-h').value = ROWS;
+        document.getElementById('res-custom-row').classList.add('visible');
+        document.getElementById('res-w').focus();
+        return;
+    }
+    document.getElementById('res-custom-row').classList.remove('visible');
+    const [w, h] = val.split('x').map(Number);
+    changeResolution(w, h);
+    syncResSelect();
+}
+
+function onResApply() {
+    const w = parseInt(document.getElementById('res-w').value, 10) || COLS;
+    const h = parseInt(document.getElementById('res-h').value, 10) || ROWS;
+    changeResolution(w, h);
+    syncResSelect();
+}
+
+// ════════════════════════════════════════════════════
+//  UTILS
+// ════════════════════════════════════════════════════
+function clearCanvas(){ pixels.fill(0); cancelSelection(); saveState(); showToast('Cleared'); }
+function isValid(x,y){ return x>=0&&x<COLS&&y>=0&&y<ROWS; }
+function togglePixel(x,y,val){ if(isValid(x,y)) pixels[y*COLS+x]=val; }
+function clamp(v,a,b){ return Math.max(a,Math.min(b,v)); }
+
+let _firstResize = true;
+function handleResize() {
+    const oldW = canvas.width, oldH = canvas.height;
+    canvas.width  = container.clientWidth;
+    canvas.height = container.clientHeight;
+    if (_firstResize) {
+        _firstResize = false;
+        fitToScreen();
+    } else {
+        offsetX += (canvas.width  - oldW) / 2;
+        offsetY += (canvas.height - oldH) / 2;
+        updateZoomUI();
+    }
+}
+
+function fitToScreen(){
+    const pw=canvas.width,ph=canvas.height;
+    scale=Math.floor(Math.min((pw-80)/COLS,(ph-80)/ROWS));
+    if(scale<1) scale=1;
+    offsetX=(pw-COLS*scale)/2;
+    offsetY=(ph-ROWS*scale)/2;
+    updateZoomUI();
+}
+
+function onWheel(e){
+    e.preventDefault();
+    const old=scale;
+    scale*=e.deltaY<0?1.2:1/1.2;
+    scale=Math.max(0.5,Math.min(scale,200));
+    const r=canvas.getBoundingClientRect();
+    const lx=e.clientX-r.left, ly=e.clientY-r.top;
+    offsetX=lx-(lx-offsetX)*(scale/old);
+    offsetY=ly-(ly-offsetY)*(scale/old);
+    updateZoomUI();
+}
+
+function updateZoomUI(){
+    const pct=Math.round(scale*100);
+    document.getElementById('zoom-value').textContent=' '+pct;
+    document.getElementById('s-zoom').textContent=' '+pct;
+}
+
+function updateStatusSelection() {
+    const info = selection.active
+        ? `Sel: ${selection.w}×${selection.h} @ (${selection.x},${selection.y})`
+        : 'No selection';
+    document.getElementById('s-sel').textContent = info;
+    document.getElementById('sel-info').textContent = selection.active ? `${selection.w}×${selection.h}` : '';
+    selToolbar.classList.toggle('visible', selection.active);
+    selToolbar.setAttribute('aria-hidden', selection.active ? 'false' : 'true');
+}
+
+function updateStatusPixels(){
+    let on=0; for(let i=0;i<pixels.length;i++) if(pixels[i]) on++;
+    document.getElementById('s-px').textContent=' '+on;
+}
+
+let toastTimer;
+function showToast(msg){
+    const t=document.getElementById('toast');
+    t.textContent=msg; t.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer=setTimeout(()=>t.classList.remove('show'),1800);
+}
+
+// ════════════════════════════════════════════════════
+//  RENDER LOOP
+// ════════════════════════════════════════════════════
+function render(){
+    const W=canvas.width,H=canvas.height;
+    const gap=scale>5?1:0;
+
+    ctx.fillStyle='#0c0c10'; ctx.fillRect(0,0,W,H);
+    ctx.lineWidth=1;
+    ctx.fillStyle='#0f0f16'; ctx.fillRect(offsetX,offsetY,COLS*scale,ROWS*scale);
+
+    // ── Pixels ──
+    for(let y=0;y<ROWS;y++){
+        const py=offsetY+y*scale;
+        if(py+scale<0||py>H) continue;
+        for(let x=0;x<COLS;x++){
+            const px=offsetX+x*scale;
+            if(px+scale<0||px>W) continue;
+            if(pixels[y*COLS+x]===1){
+                ctx.fillStyle='#ffffff';
+                ctx.fillRect(px+gap,py+gap,scale-gap*2,scale-gap*2);
+                if(scale>12){ctx.fillStyle='rgba(255,255,255,.15)';ctx.fillRect(px+gap,py+gap,scale-gap*2,Math.max(1,(scale-gap*2)*.25));}
+            }else{
+                ctx.fillStyle=gap>0?'#2e2e42':'#292936';
+                ctx.fillRect(px+gap,py+gap,scale-gap*2,scale-gap*2);
+            }
+        }
+    }
+
+    // ── Cursor highlight ──
+    if(isValid(cursorPx.x,cursorPx.y)&&!isPanning){
+        const hx=offsetX+cursorPx.x*scale, hy=offsetY+cursorPx.y*scale;
+        ctx.fillStyle='rgba(0,229,160,.2)';
+        ctx.fillRect(hx+gap,hy+gap,scale-gap*2,scale-gap*2);
+        ctx.strokeStyle='rgba(0,229,160,.85)';
+        ctx.lineWidth=Math.min(2,Math.max(1,scale/8));
+        ctx.setLineDash([]);
+        ctx.strokeRect(hx+.5,hy+.5,scale-1,scale-1);
+        if((currentTool==='pencil'||currentTool==='eraser')&&brushSize>1&&scale>=2){
+            const half=Math.floor(brushSize/2);
+            ctx.strokeStyle='rgba(0,229,160,.4)';ctx.lineWidth=1;ctx.setLineDash([3,3]);
+            ctx.strokeRect(offsetX+(cursorPx.x-half)*scale+.5,offsetY+(cursorPx.y-half)*scale+.5,brushSize*scale-1,brushSize*scale-1);
+            ctx.setLineDash([]);
+        }
+    }
+
+    // ── Shape preview ──
+    if(isShaping){
+        const preview=getShapePreview(currentTool,shapeStart,shapeEnd);
+        ctx.fillStyle='rgba(0,229,160,.65)';
+        for(let y=0;y<ROWS;y++){const py=offsetY+y*scale;for(let x=0;x<COLS;x++){if(preview[y*COLS+x])ctx.fillRect(offsetX+x*scale+gap,py+gap,scale-gap*2,scale-gap*2);}}
+        if(scale>=3){ctx.fillStyle='rgba(255,180,0,.9)';const ax=offsetX+shapeStart.x*scale,ay=offsetY+shapeStart.y*scale;ctx.fillRect(ax+gap,ay+gap,Math.max(2,scale-gap*2),Math.max(2,scale-gap*2));}
+    }
+
+    // ── Moving / resizing selection preview ──
+    if((isMovingSelection||isResizingSelection)&&selectionBuffer){
+        ctx.fillStyle='rgba(255,255,255,.5)';
+        const bw = selBufferW || selection.w;
+        const bh = selBufferH || selection.h;
+        for(let j=0;j<bh;j++) for(let i=0;i<bw;i++){
+            if(selectionBuffer[j*bw+i]===1)
+                ctx.fillRect(offsetX+(selection.x+i)*scale+gap,offsetY+(selection.y+j)*scale+gap,scale-gap*2,scale-gap*2);
+        }
+    }
+
+    // ── Selection marquee ──
+    if(selection.active){
+        const t=Date.now()/80;
+        ctx.strokeStyle=SEL_COLOR;ctx.lineWidth=1.5;ctx.setLineDash([4,4]);ctx.lineDashOffset=-(t%8);
+        ctx.strokeRect(offsetX+selection.x*scale-1,offsetY+selection.y*scale-1,selection.w*scale+2,selection.h*scale+2);
+        ctx.setLineDash([]);
+        ctx.strokeStyle=SEL_COLOR_DIM;ctx.lineWidth=3;
+        ctx.strokeRect(offsetX+selection.x*scale-2,offsetY+selection.y*scale-2,selection.w*scale+4,selection.h*scale+4);
+
+        // ── Resize handles ──
+        const handles = getHandlePositions();
+        const HS = Math.max(4, Math.min(8, scale));
+        for (const [, [hx, hy]] of Object.entries(handles)) {
+            ctx.fillStyle = '#ffffff';
+            ctx.fillRect(hx-HS/2, hy-HS/2, HS, HS);
+            ctx.fillStyle = SEL_COLOR;
+            ctx.fillRect(hx-HS/2+1, hy-HS/2+1, HS-2, HS-2);
+        }
+    }
+
+    // ── Canvas border ──
+    ctx.strokeStyle='rgba(255,255,255,.13)';ctx.lineWidth=1;ctx.setLineDash([]);
+    ctx.strokeRect(offsetX-.5,offsetY-.5,COLS*scale+1,ROWS*scale+1);
+
+    requestAnimationFrame(render);
+}
+
+// ════════════════════════════════════════════════════
+//  TOUCH SUPPORT
+// ════════════════════════════════════════════════════
+let _lastTouchDist = null;
+
+function _touchToMouse(touch) {
+    return { clientX: touch.clientX, clientY: touch.clientY,
+             button: 0, ctrlKey: false, altKey: false, shiftKey: false };
+}
+
+function onTouchStart(e) {
+    e.preventDefault();
+    if (e.touches.length === 2) {
+        const t = e.touches;
+        _lastTouchDist = Math.hypot(t[1].clientX-t[0].clientX, t[1].clientY-t[0].clientY);
+        return;
+    }
+    _lastTouchDist = null;
+    if (e.touches.length === 1) onMouseDown(_touchToMouse(e.touches[0]));
+}
+
+function onTouchMove(e) {
+    e.preventDefault();
+    if (e.touches.length === 2 && _lastTouchDist !== null) {
+        const t = e.touches;
+        const dist = Math.hypot(t[1].clientX-t[0].clientX, t[1].clientY-t[0].clientY);
+        const factor = dist / _lastTouchDist;
+        _lastTouchDist = dist;
+        const midX = (t[0].clientX + t[1].clientX) / 2;
+        const midY = (t[0].clientY + t[1].clientY) / 2;
+        const old = scale;
+        scale = Math.max(0.5, Math.min(scale * factor, 200));
+        const r = canvas.getBoundingClientRect();
+        const lx = midX - r.left, ly = midY - r.top;
+        offsetX = lx - (lx - offsetX) * (scale / old);
+        offsetY = ly - (ly - offsetY) * (scale / old);
+        updateZoomUI();
+        return;
+    }
+    if (e.touches.length === 1) onMouseMove(_touchToMouse(e.touches[0]));
+}
+
+function onTouchEnd(e) {
+    e.preventDefault();
+    _lastTouchDist = null;
+    onMouseUp();
+}
+
+// ════════════════════════════════════════════════════
+//  HELP MODAL
+// ════════════════════════════════════════════════════
+function openHelp() {
+    const overlay = document.getElementById('help-overlay');
+    overlay.classList.add('open');
+    overlay.setAttribute('aria-hidden', 'false');
+    // Focus the close button for keyboard users
+    setTimeout(() => overlay.querySelector('.hm-close')?.focus(), 50);
+}
+
+function closeHelp() {
+    const overlay = document.getElementById('help-overlay');
+    overlay.classList.remove('open');
+    overlay.setAttribute('aria-hidden', 'true');
+}
+
+function overlayClick(e) {
+    // Close if clicking the backdrop (not the modal itself)
+    if (e.target === document.getElementById('help-overlay')) closeHelp();
+}
+
+function helpTab(btn, panelId) {
+    // Deactivate all tabs + panels
+    btn.closest('.hm-tabs').querySelectorAll('.hm-tab').forEach(t => {
+        t.classList.remove('active');
+        t.setAttribute('aria-selected', 'false');
+    });
+    document.querySelectorAll('.hm-panel').forEach(p => p.classList.remove('active'));
+    // Activate selected
+    btn.classList.add('active');
+    btn.setAttribute('aria-selected', 'true');
+    const panel = document.getElementById(panelId);
+    if (panel) { panel.classList.add('active'); panel.scrollTop = 0; }
+}
+
+// Close help on Escape key (works alongside other Escape handling)
+window.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && document.getElementById('help-overlay').classList.contains('open')) {
+        closeHelp();
+        e.stopPropagation(); // don't also cancel selection
+    }
+}, true); // capture phase so it fires before the main keydown handler
+
+init();
+</script>
 </body>
 </html>
